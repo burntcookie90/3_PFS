@@ -150,8 +150,15 @@ int main(int argc, char **argv)
                 "of the image.\n");
         return 1;
     }
-
-    /* Load an ExifData object from an EXIF file */
+/*
+    //Check for existence of file
+    if (FILE * file = fopen(argv[0], "r")){
+        fclose(file);
+    }else{
+    	return 2;
+    }
+*/
+    // Load an ExifData object from an EXIF file
     ed = exif_data_new_from_file(argv[1]);
     if (!ed) {
 	//Get current date
