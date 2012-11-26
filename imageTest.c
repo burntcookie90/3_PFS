@@ -47,32 +47,38 @@ static void show_tag(ExifData *d, ExifIfd ifd, ExifTag tag)
     if (entry) {
         char buf[1024];
 
-	//Hold date
-	char month[3];
-
         // Get the contents of the tag in human-readable form 
         exif_entry_get_value(entry, buf, sizeof(buf));
 
         // Check if date is actually there
         trim_spaces(buf);
         if (*buf) {
-	     //Extract date
-	    memcpy(year,buf, 4);
-	    year[4] = '\0';
-	    memcpy(month, buf+5, 2);
-	    month[2] = '\0';
-	    monthNum = atoi(month);
-	    memcpy(day, buf+8,2);
-	    day[2] = '\0';
+	     if (tag==EXIF_TAG_DATE_TIME_ORIGINAL){
+		//Hold date
+		char month[3];		
+
+		//Extract date
+	   	memcpy(year,buf, 4);
+	    	year[4] = '\0';
+	    	memcpy(month, buf+5, 2);
+	    	month[2] = '\0';
+	    	monthNum = atoi(month);
+	    	memcpy(day, buf+8,2);
+	    	day[2] = '\0';
+	    }
 	}else{
-           //if no date is actually there, print todays date
-	   today();
+            if (tag==EXIF_TAG_DATE_TIME_ORIGINAL){
+	     	//if no date is actually there, print todays date
+	   	 today();
+	    }
 	}
         
     }else{
-	  //if tag does not exist, print todays date
+	if (tag==EXIF_TAG_DATE_TIME_ORIGINAL){
+	   //if tag does not exist, print todays date
           today();
-        }
+	}
+    }
 }
 
 void datePost(){
@@ -144,12 +150,11 @@ int main(int argc, char **argv)
 	today();
 	datePost();
     }else{
-	/* Show all the tags that might contain information about the
-    	 * photographer
-     	*/
+	//Get date
     	show_tag(ed, EXIF_IFD_EXIF, EXIF_TAG_DATE_TIME_ORIGINAL);
 	datePost();
-    	// Free the EXIF data
+    	
+	// Free the EXIF data
     	exif_data_unref(ed);
     }
     
