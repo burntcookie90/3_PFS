@@ -14,7 +14,7 @@
 //Hold date
 char year[5];
 char day[3];
-int monthNum;
+char monthName[10];
 
 /* Remove spaces on the right of the string */
 static void trim_spaces(char *buf)
@@ -27,21 +27,25 @@ static void trim_spaces(char *buf)
     *++s = 0; /* nul terminate the string on the first of the final spaces */
 }
 
-static void today(){
+static int today(){
 	//if tag does not exist, print todays date
-           struct tm *current;
+          int monthNum;
+	   struct tm *current;
            time_t timenow;
            time(&timenow);
            current = localtime(&timenow);
            monthNum = current->tm_mon+1;
            day[sprintf(day, "%d", current->tm_mday)]='\0';
            year[sprintf(year, "%d", current->tm_year+1900)]='\0';
-
+	   return monthNum;
 }
 
 /* Show the tag name and contents if the tag exists */
-static void show_tag(ExifData *d, ExifIfd ifd, ExifTag tag)
+static int show_tag(ExifData *d, ExifIfd ifd, ExifTag tag)
 {
+    //hold month number
+    int monthNum = 1;
+
     /* See if this tag exists */
     ExifEntry *entry = exif_content_get_entry(d->ifd[ifd],tag);
     if (entry) {
@@ -69,21 +73,25 @@ static void show_tag(ExifData *d, ExifIfd ifd, ExifTag tag)
 	}else{
             if (tag==EXIF_TAG_DATE_TIME_ORIGINAL){
 	     	//if no date is actually there, print todays date
-	   	 today();
+	   	monthNum =  today();
 	    }
 	}
         
     }else{
 	if (tag==EXIF_TAG_DATE_TIME_ORIGINAL){
 	   //if tag does not exist, print todays date
-          today();
+          monthNum = today();
 	}
+    }
+
+    if (tag==EXIF_TAG_DATE_TIME_ORIGINAL){ 
+	return monthNum;
+    }else{
+	return 0;
     }
 }
 
-void datePost(){
-	//Hold month name   
-	char monthName[10];
+void datePost(int monthNum){
 
 	 //Put month in word form
             switch (monthNum){
@@ -134,7 +142,7 @@ int main(int argc, char **argv)
 {
     ExifData *ed;
     ExifEntry *entry;
-    
+
     //Check arguments
     if (argc < 2) {
         printf("Usage: %s image.jpg\n", argv[0]);
@@ -147,12 +155,10 @@ int main(int argc, char **argv)
     ed = exif_data_new_from_file(argv[1]);
     if (!ed) {
 	//Get current date
-	today();
-	datePost();
+	datePost(today());
     }else{
 	//Get date
-    	show_tag(ed, EXIF_IFD_EXIF, EXIF_TAG_DATE_TIME_ORIGINAL);
-	datePost();
+	datePost(show_tag(ed, EXIF_IFD_EXIF, EXIF_TAG_DATE_TIME_ORIGINAL));
     	
 	// Free the EXIF data
     	exif_data_unref(ed);
