@@ -1961,3 +1961,5 @@ bb_getattr(path="/hello", statbuf=0x42de9fd0)
     st_atime = 0x50a97ad5
     st_mtime = 0x50a97ad5
     st_ctime = 0x50a97ad5
+
+bb_destroy(userdata=0x00605010)
