@@ -99,4 +99,1389 @@ bb_getattr(path="/", statbuf=0x418e9fe0)
     st_mtime = 0x50b50e75
     st_ctime = 0x50b50e75
 
+<<<<<<< HEAD
+=======
+bb_releasedir(path="/", fi=0x425e9000)
+    flags = 0x00000000
+    fh_old = 0x0063dc60
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x000000000063dc60
+    lock_owner = 0x0000000000000000
+
+bb_opendir(path="/", fi=0x41de8000)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/"
+    flags = 0x00008000
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x000000000063dc60
+    lock_owner = 0x0000000000000000
+
+bb_releasedir(path="/", fi=0x425e9000)
+    flags = 0x00000000
+    fh_old = 0x0063dc60
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x000000000063dc60
+    lock_owner = 0x0000000000000000
+
+bb_opendir(path="/", fi=0x41de8000)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/"
+    flags = 0x00008000
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x000000000063dc60
+    lock_owner = 0x0000000000000000
+
+bb_releasedir(path="/", fi=0x425e9000)
+    flags = 0x00000000
+    fh_old = 0x0063dc60
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x000000000063dc60
+    lock_owner = 0x0000000000000000
+
+bb_opendir(path="/", fi=0x41de8000)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/"
+    flags = 0x00008000
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x000000000063dc60
+    lock_owner = 0x0000000000000000
+
+bb_releasedir(path="/", fi=0x425e9000)
+    flags = 0x00000000
+    fh_old = 0x0063dc60
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x000000000063dc60
+    lock_owner = 0x0000000000000000
+
+bb_opendir(path="/", fi=0x41de8000)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/"
+    flags = 0x00008000
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x000000000063dc60
+    lock_owner = 0x0000000000000000
+
+bb_releasedir(path="/", fi=0x425e9000)
+    flags = 0x00000000
+    fh_old = 0x0063dc60
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x000000000063dc60
+    lock_owner = 0x0000000000000000
+
+bb_opendir(path="/", fi=0x41de8000)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/"
+    flags = 0x00008000
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x000000000063dc60
+    lock_owner = 0x0000000000000000
+
+bb_releasedir(path="/", fi=0x425e9000)
+    flags = 0x00000000
+    fh_old = 0x0063dc60
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x000000000063dc60
+    lock_owner = 0x0000000000000000
+
+bb_opendir(path="/", fi=0x41de8000)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/"
+    flags = 0x00008000
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x000000000063dc60
+    lock_owner = 0x0000000000000000
+
+bb_releasedir(path="/", fi=0x425e9000)
+    flags = 0x00000000
+    fh_old = 0x0063dc60
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x000000000063dc60
+    lock_owner = 0x0000000000000000
+
+bb_opendir(path="/", fi=0x41de8000)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/"
+    flags = 0x00008000
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x000000000063dc60
+    lock_owner = 0x0000000000000000
+
+bb_releasedir(path="/", fi=0x425e9000)
+    flags = 0x00000000
+    fh_old = 0x0063dc60
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x000000000063dc60
+    lock_owner = 0x0000000000000000
+
+bb_opendir(path="/", fi=0x41de8000)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/"
+    flags = 0x00008000
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x000000000063dc60
+    lock_owner = 0x0000000000000000
+
+bb_releasedir(path="/", fi=0x425e9000)
+    flags = 0x00000000
+    fh_old = 0x0063dc60
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x000000000063dc60
+    lock_owner = 0x0000000000000000
+
+bb_opendir(path="/", fi=0x41de8000)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/"
+    flags = 0x00008000
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x000000000063dc60
+    lock_owner = 0x0000000000000000
+
+bb_releasedir(path="/", fi=0x425e9000)
+    flags = 0x00000000
+    fh_old = 0x0063dc60
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x000000000063dc60
+    lock_owner = 0x0000000000000000
+
+bb_opendir(path="/", fi=0x41de8000)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/"
+    flags = 0x00008000
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x000000000063dc60
+    lock_owner = 0x0000000000000000
+
+bb_releasedir(path="/", fi=0x425e9000)
+    flags = 0x00000000
+    fh_old = 0x0063dc60
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x000000000063dc60
+    lock_owner = 0x0000000000000000
+
+bb_opendir(path="/", fi=0x41de8000)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/"
+    flags = 0x00008000
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x000000000063dc60
+    lock_owner = 0x0000000000000000
+
+bb_releasedir(path="/", fi=0x425e9000)
+    flags = 0x00000000
+    fh_old = 0x0063dc60
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x000000000063dc60
+    lock_owner = 0x0000000000000000
+
+bb_opendir(path="/", fi=0x41de8000)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/"
+    flags = 0x00008000
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x000000000063dc60
+    lock_owner = 0x0000000000000000
+
+bb_releasedir(path="/", fi=0x425e9000)
+    flags = 0x00000000
+    fh_old = 0x0063dc60
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x000000000063dc60
+    lock_owner = 0x0000000000000000
+
+bb_opendir(path="/", fi=0x41de8000)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/"
+    flags = 0x00008000
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x000000000063dc60
+    lock_owner = 0x0000000000000000
+
+bb_releasedir(path="/", fi=0x425e9000)
+    flags = 0x00000000
+    fh_old = 0x0063dc60
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x000000000063dc60
+    lock_owner = 0x0000000000000000
+
+bb_opendir(path="/", fi=0x41de8000)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/"
+    flags = 0x00008000
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x000000000063dc60
+    lock_owner = 0x0000000000000000
+
+bb_releasedir(path="/", fi=0x425e9000)
+    flags = 0x00000000
+    fh_old = 0x0063dc60
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x000000000063dc60
+    lock_owner = 0x0000000000000000
+
+bb_opendir(path="/", fi=0x41de8000)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/"
+    flags = 0x00008000
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x000000000063dc60
+    lock_owner = 0x0000000000000000
+
+bb_releasedir(path="/", fi=0x425e9000)
+    flags = 0x00000000
+    fh_old = 0x0063dc60
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x000000000063dc60
+    lock_owner = 0x0000000000000000
+
+bb_getattr(path="/asdasd", statbuf=0x41de7fd0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/asdasd", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/asdasd"
+    ERROR bb_getattr lstat: No such file or directory
+    st_dev = 0
+    st_ino = 0
+    st_mode = 00
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+
+bb_getattr(path="/asdasd", statbuf=0x425e8fd0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/asdasd", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/asdasd"
+    ERROR bb_getattr lstat: No such file or directory
+    st_dev = 0
+    st_ino = 0
+    st_mode = 00
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+
+bb_getattr(path="/asdasd", statbuf=0x41de7fd0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/asdasd", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/asdasd"
+    ERROR bb_getattr lstat: No such file or directory
+    st_dev = 0
+    st_ino = 0
+    st_mode = 00
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+
+bb_access(path="/", mask=01)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/"
+
+bb_getattr(path="/asdasd", statbuf=0x41de7fd0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/asdasd", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/asdasd"
+    ERROR bb_getattr lstat: No such file or directory
+    st_dev = 0
+    st_ino = 0
+    st_mode = 00
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+
+bb_getattr(path="/asdasd", statbuf=0x425e8fd0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/asdasd", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/asdasd"
+    ERROR bb_getattr lstat: No such file or directory
+    st_dev = 0
+    st_ino = 0
+    st_mode = 00
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+
+bb_getattr(path="/asdasd", statbuf=0x41de7fd0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/asdasd", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/asdasd"
+    ERROR bb_getattr lstat: No such file or directory
+    st_dev = 0
+    st_ino = 0
+    st_mode = 00
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+
+bb_getattr(path="/.asdasd.swp", statbuf=0x425e8fd0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/.asdasd.swp", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/.asdasd.swp"
+    ERROR bb_getattr lstat: No such file or directory
+    st_dev = 0
+    st_ino = 0
+    st_mode = 00
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+
+bb_getattr(path="/.asdasd.swp", statbuf=0x41de7fd0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/.asdasd.swp", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/.asdasd.swp"
+    ERROR bb_getattr lstat: No such file or directory
+    st_dev = 0
+    st_ino = 0
+    st_mode = 00
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+
+bb_create(path="/.asdasd.swp", mode=0100600, fi=0x425e90c0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/.asdasd.swp", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/.asdasd.swp"
+    flags = 0x000080c2
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_fgetattr(path="/.asdasd.swp", statbuf=0x425e8f90, fi=0x425e90c0)
+    flags = 0x000080c2
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+    st_dev = 17
+    st_ino = 642114
+    st_mode = 0100600
+    st_nlink = 1
+    st_uid = 239492
+    st_gid = 2626
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 32768
+    st_blocks = 0
+    st_atime = 0x50a99e9f
+    st_mtime = 0x50a99e9f
+    st_ctime = 0x50a99e9f
+
+bb_getattr(path="/.asdasd.swpx", statbuf=0x41de7fd0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/.asdasd.swpx", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/.asdasd.swpx"
+    ERROR bb_getattr lstat: No such file or directory
+    st_dev = 0
+    st_ino = 0
+    st_mode = 00
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+
+bb_getattr(path="/.asdasd.swpx", statbuf=0x425e8fd0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/.asdasd.swpx", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/.asdasd.swpx"
+    ERROR bb_getattr lstat: No such file or directory
+    st_dev = 0
+    st_ino = 0
+    st_mode = 00
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+
+bb_create(path="/.asdasd.swpx", mode=0100600, fi=0x41de80c0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/.asdasd.swpx", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/.asdasd.swpx"
+    flags = 0x000080c2
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000006
+    lock_owner = 0x0000000000000000
+
+bb_fgetattr(path="/.asdasd.swpx", statbuf=0x41de7f90, fi=0x41de80c0)
+    flags = 0x000080c2
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000006
+    lock_owner = 0x0000000000000000
+    st_dev = 17
+    st_ino = 642252
+    st_mode = 0100600
+    st_nlink = 1
+    st_uid = 239492
+    st_gid = 2626
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 32768
+    st_blocks = 0
+    st_atime = 0x50a99e9f
+    st_mtime = 0x50a99e9f
+    st_ctime = 0x50a99e9f
+
+bb_flush(path="/.asdasd.swpx", fi=0x425e90c0)
+    flags = 0x00000000
+    fh_old = 0x00000006
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000006
+    lock_owner = 0xff0fece1b0a27b47
+
+bb_release(path="/.asdasd.swpx", fi=0x41de80c0)
+    flags = 0x00008002
+    fh_old = 0x00000006
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000006
+    lock_owner = 0x0000000000000000
+bb_unlink(path="/.asdasd.swpx")
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/.asdasd.swpx", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/.asdasd.swpx"
+
+bb_flush(path="/.asdasd.swp", fi=0x425e90c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0xff0fece1b0a27b47
+
+bb_release(path="/.asdasd.swp", fi=0x41de80c0)
+    flags = 0x00008002
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+bb_unlink(path="/.asdasd.swp")
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/.asdasd.swp", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/.asdasd.swp"
+
+bb_getattr(path="/.asdasd.swp", statbuf=0x425e8fd0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/.asdasd.swp", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/.asdasd.swp"
+    ERROR bb_getattr lstat: No such file or directory
+    st_dev = 0
+    st_ino = 0
+    st_mode = 00
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+
+bb_getattr(path="/.asdasd.swp", statbuf=0x41de7fd0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/.asdasd.swp", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/.asdasd.swp"
+    ERROR bb_getattr lstat: No such file or directory
+    st_dev = 0
+    st_ino = 0
+    st_mode = 00
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+
+bb_getattr(path="/.asdasd.swp", statbuf=0x425e8fd0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/.asdasd.swp", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/.asdasd.swp"
+    ERROR bb_getattr lstat: No such file or directory
+    st_dev = 0
+    st_ino = 0
+    st_mode = 00
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+
+bb_getattr(path="/.asdasd.swp", statbuf=0x41de7fd0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/.asdasd.swp", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/.asdasd.swp"
+    ERROR bb_getattr lstat: No such file or directory
+    st_dev = 0
+    st_ino = 0
+    st_mode = 00
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+
+bb_create(path="/.asdasd.swp", mode=0100600, fi=0x425e90c0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/.asdasd.swp", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/.asdasd.swp"
+    flags = 0x000280c2
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_fgetattr(path="/.asdasd.swp", statbuf=0x425e8f90, fi=0x425e90c0)
+    flags = 0x000280c2
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+    st_dev = 17
+    st_ino = 642114
+    st_mode = 0100600
+    st_nlink = 1
+    st_uid = 239492
+    st_gid = 2626
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 32768
+    st_blocks = 0
+    st_atime = 0x50a99e9f
+    st_mtime = 0x50a99e9f
+    st_ctime = 0x50a99e9f
+
+bb_write(path="/.asdasd.swp", buf=0xd9482050, size=4096, offset=0, fi=0x41de80c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_opendir(path="/", fi=0x425e9000)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/"
+    flags = 0x00008000
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x000000000063dd00
+    lock_owner = 0x0000000000000000
+
+bb_releasedir(path="/", fi=0x41de8000)
+    flags = 0x00000000
+    fh_old = 0x0063dd00
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x000000000063dd00
+    lock_owner = 0x0000000000000000
+
+bb_getattr(path="/asdasd", statbuf=0x425e8fd0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/asdasd", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/asdasd"
+    ERROR bb_getattr lstat: No such file or directory
+    st_dev = 0
+    st_ino = 0
+    st_mode = 00
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+
+bb_write(path="/.asdasd.swp", buf=0xd9482050, size=4096, offset=0, fi=0x41de80c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_getattr(path="/asdasd", statbuf=0x425e8fd0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/asdasd", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/asdasd"
+    ERROR bb_getattr lstat: No such file or directory
+    st_dev = 0
+    st_ino = 0
+    st_mode = 00
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+
+bb_getattr(path="/asdasd", statbuf=0x41de7fd0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/asdasd", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/asdasd"
+    ERROR bb_getattr lstat: No such file or directory
+    st_dev = 0
+    st_ino = 0
+    st_mode = 00
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+
+bb_getattr(path="/asdasd", statbuf=0x425e8fd0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/asdasd", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/asdasd"
+    ERROR bb_getattr lstat: No such file or directory
+    st_dev = 0
+    st_ino = 0
+    st_mode = 00
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+
+bb_create(path="/asdasd", mode=0100644, fi=0x41de80c0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/asdasd", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/asdasd"
+    flags = 0x00008241
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000006
+    lock_owner = 0x0000000000000000
+
+bb_fgetattr(path="/asdasd", statbuf=0x41de7f90, fi=0x41de80c0)
+    flags = 0x00008241
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000006
+    lock_owner = 0x0000000000000000
+    st_dev = 17
+    st_ino = 642252
+    st_mode = 0100644
+    st_nlink = 1
+    st_uid = 239492
+    st_gid = 2626
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 32768
+    st_blocks = 0
+    st_atime = 0x50a99ea3
+    st_mtime = 0x50a99ea3
+    st_ctime = 0x50a99ea3
+
+bb_write(path="/asdasd", buf=0xd9460050, size=9, offset=0, fi=0x425e90c0)
+    flags = 0x00000000
+    fh_old = 0x00000006
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000006
+    lock_owner = 0x0000000000000000
+
+bb_fsync(path="/asdasd", datasync=0, fi=0x41de80c0)
+    flags = 0x00000000
+    fh_old = 0x00000006
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000006
+    lock_owner = 0x0000000000000000
+
+bb_getattr(path="/asdasd", statbuf=0x425e8fe0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/asdasd", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/asdasd"
+    st_dev = 17
+    st_ino = 642252
+    st_mode = 0100644
+    st_nlink = 1
+    st_uid = 239492
+    st_gid = 2626
+    st_rdev = 0
+    st_size = 9
+    st_blksize = 32768
+    st_blocks = 0
+    st_atime = 0x50a99ea3
+    st_mtime = 0x50a99ea3
+    st_ctime = 0x50a99ea3
+
+bb_flush(path="/asdasd", fi=0x41de80c0)
+    flags = 0x00000000
+    fh_old = 0x00000006
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000006
+    lock_owner = 0xff0fece1b0a27b47
+
+bb_release(path="/asdasd", fi=0x425e90c0)
+    flags = 0x00008001
+    fh_old = 0x00000006
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000006
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/.asdasd.swp", buf=0xd9482050, size=4096, offset=0, fi=0x41de80c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_flush(path="/.asdasd.swp", fi=0x425e90c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0xff0fece1b0a27b47
+
+bb_release(path="/.asdasd.swp", fi=0x41de80c0)
+    flags = 0x00028002
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_getattr(path="/.asdasd.swp", statbuf=0x425e8fd0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/.asdasd.swp", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/.asdasd.swp"
+    st_dev = 17
+    st_ino = 642114
+    st_mode = 0100600
+    st_nlink = 1
+    st_uid = 239492
+    st_gid = 2626
+    st_rdev = 0
+    st_size = 4096
+    st_blksize = 32768
+    st_blocks = 8
+    st_atime = 0x50a99e9f
+    st_mtime = 0x50a99ea3
+    st_ctime = 0x50a99ea3
+bb_unlink(path="/.asdasd.swp")
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/.asdasd.swp", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/.asdasd.swp"
+
+bb_getattr(path="/hello", statbuf=0x425e8fd0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/hello", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/hello"
+    st_dev = 17
+    st_ino = 642117
+    st_mode = 0100644
+    st_nlink = 1
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 32768
+    st_blocks = 0
+    st_atime = 0x50a97ad5
+    st_mtime = 0x50a97ad5
+    st_ctime = 0x50a97ad5
+
+bb_getattr(path="/", statbuf=0x42de9fe0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/"
+    st_dev = 17
+    st_ino = 642101
+    st_mode = 040755
+    st_nlink = 2
+    st_uid = 239492
+    st_gid = 2626
+    st_rdev = 0
+    st_size = 4096
+    st_blksize = 32768
+    st_blocks = 8
+    st_atime = 0x50a97744
+    st_mtime = 0x50a99ea3
+    st_ctime = 0x50a99ea3
+
+bb_opendir(path="/", fi=0x41de8000)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/"
+    flags = 0x00018800
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x000000000063df30
+    lock_owner = 0x0000000000000000
+
+bb_readdir(path="/", buf=0x0063dc80, filler=0xd94b0840, offset=0, fi=0x425e9000)
+calling filler with name hello
+calling filler with name asdasd
+calling filler with name ..
+calling filler with name .
+    flags = 0x00000000
+    fh_old = 0x0063df30
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x000000000063df30
+    lock_owner = 0x0000000000000000
+
+bb_getattr(path="/.gitignore", statbuf=0x42de9fd0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/.gitignore", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/.gitignore"
+    ERROR bb_getattr lstat: No such file or directory
+    st_dev = 0
+    st_ino = 0
+    st_mode = 00
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+
+bb_getattr(path="/hello", statbuf=0x41de7fd0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/hello", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/hello"
+    st_dev = 17
+    st_ino = 642117
+    st_mode = 0100644
+    st_nlink = 1
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 32768
+    st_blocks = 0
+    st_atime = 0x50a97ad5
+    st_mtime = 0x50a97ad5
+    st_ctime = 0x50a97ad5
+
+bb_getattr(path="/asdasd", statbuf=0x425e8fd0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/asdasd", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/asdasd"
+    st_dev = 17
+    st_ino = 642252
+    st_mode = 0100644
+    st_nlink = 1
+    st_uid = 239492
+    st_gid = 2626
+    st_rdev = 0
+    st_size = 9
+    st_blksize = 32768
+    st_blocks = 8
+    st_atime = 0x50a99ea3
+    st_mtime = 0x50a99ea3
+    st_ctime = 0x50a99ea3
+
+bb_releasedir(path="/", fi=0x41de8000)
+    flags = 0x00000000
+    fh_old = 0x0063df30
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x000000000063df30
+    lock_owner = 0x0000000000000000
+
+bb_getattr(path="/", statbuf=0x425e8fe0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/"
+    st_dev = 17
+    st_ino = 642101
+    st_mode = 040755
+    st_nlink = 2
+    st_uid = 239492
+    st_gid = 2626
+    st_rdev = 0
+    st_size = 4096
+    st_blksize = 32768
+    st_blocks = 8
+    st_atime = 0x50a97744
+    st_mtime = 0x50a99ea3
+    st_ctime = 0x50a99ea3
+
+bb_open(path"/asdasd", fi=0x42dea0c0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/asdasd", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/asdasd"
+    flags = 0x00008000
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_read(path="/asdasd", buf=0x0063deb0, size=4096, offset=0, fi=0x41de80c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_getattr(path="/.gitattributes", statbuf=0x425e8fd0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/.gitattributes", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/.gitattributes"
+    ERROR bb_getattr lstat: No such file or directory
+    st_dev = 0
+    st_ino = 0
+    st_mode = 00
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+
+bb_flush(path="/asdasd", fi=0x42dea0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x96d319260c9936f8
+
+bb_release(path="/asdasd", fi=0x41de80c0)
+    flags = 0x00008000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_getattr(path="/asdasd", statbuf=0x425e8fd0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/asdasd", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/asdasd"
+    st_dev = 17
+    st_ino = 642252
+    st_mode = 0100644
+    st_nlink = 1
+    st_uid = 239492
+    st_gid = 2626
+    st_rdev = 0
+    st_size = 9
+    st_blksize = 32768
+    st_blocks = 8
+    st_atime = 0x50a99ea3
+    st_mtime = 0x50a99ea3
+    st_ctime = 0x50a99ea3
+
+bb_getattr(path="/", statbuf=0x42de9fe0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/"
+    st_dev = 17
+    st_ino = 642101
+    st_mode = 040755
+    st_nlink = 2
+    st_uid = 239492
+    st_gid = 2626
+    st_rdev = 0
+    st_size = 4096
+    st_blksize = 32768
+    st_blocks = 8
+    st_atime = 0x50a97744
+    st_mtime = 0x50a99ea3
+    st_ctime = 0x50a99ea3
+
+bb_getattr(path="/hello", statbuf=0x41de7fd0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/hello", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/hello"
+    st_dev = 17
+    st_ino = 642117
+    st_mode = 0100644
+    st_nlink = 1
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 32768
+    st_blocks = 0
+    st_atime = 0x50a97ad5
+    st_mtime = 0x50a97ad5
+    st_ctime = 0x50a97ad5
+
+bb_open(path"/asdasd", fi=0x425e90c0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/asdasd", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/asdasd"
+    flags = 0x00008000
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_flush(path="/asdasd", fi=0x42dea0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x96d319260c9936f8
+
+bb_getattr(path="/.gitattributes", statbuf=0x41de7fd0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/.gitattributes", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/.gitattributes"
+    ERROR bb_getattr lstat: No such file or directory
+    st_dev = 0
+    st_ino = 0
+    st_mode = 00
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+
+bb_read(path="/asdasd", buf=0x0063deb0, size=4096, offset=0, fi=0x425e90c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_release(path="/asdasd", fi=0x42dea0c0)
+    flags = 0x00008000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_getattr(path="/asdasd", statbuf=0x41de7fd0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/asdasd", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/asdasd"
+    st_dev = 17
+    st_ino = 642252
+    st_mode = 0100644
+    st_nlink = 1
+    st_uid = 239492
+    st_gid = 2626
+    st_rdev = 0
+    st_size = 9
+    st_blksize = 32768
+    st_blocks = 8
+    st_atime = 0x50a99ea3
+    st_mtime = 0x50a99ea3
+    st_ctime = 0x50a99ea3
+
+bb_getattr(path="/", statbuf=0x425e8fe0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/"
+    st_dev = 17
+    st_ino = 642101
+    st_mode = 040755
+    st_nlink = 2
+    st_uid = 239492
+    st_gid = 2626
+    st_rdev = 0
+    st_size = 4096
+    st_blksize = 32768
+    st_blocks = 8
+    st_atime = 0x50a97744
+    st_mtime = 0x50a99ea3
+    st_ctime = 0x50a99ea3
+
+bb_getattr(path="/hello", statbuf=0x42de9fd0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/hello", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/hello"
+    st_dev = 17
+    st_ino = 642117
+    st_mode = 0100644
+    st_nlink = 1
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 32768
+    st_blocks = 0
+    st_atime = 0x50a97ad5
+    st_mtime = 0x50a97ad5
+    st_ctime = 0x50a97ad5
+
+bb_getattr(path="/asdasd", statbuf=0x41de7fd0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/asdasd", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/asdasd"
+    st_dev = 17
+    st_ino = 642252
+    st_mode = 0100644
+    st_nlink = 1
+    st_uid = 239492
+    st_gid = 2626
+    st_rdev = 0
+    st_size = 9
+    st_blksize = 32768
+    st_blocks = 8
+    st_atime = 0x50a99ea3
+    st_mtime = 0x50a99ea3
+    st_ctime = 0x50a99ea3
+
+bb_getattr(path="/", statbuf=0x425e8fe0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/"
+    st_dev = 17
+    st_ino = 642101
+    st_mode = 040755
+    st_nlink = 2
+    st_uid = 239492
+    st_gid = 2626
+    st_rdev = 0
+    st_size = 4096
+    st_blksize = 32768
+    st_blocks = 8
+    st_atime = 0x50a97744
+    st_mtime = 0x50a99ea3
+    st_ctime = 0x50a99ea3
+
+bb_getattr(path="/hello", statbuf=0x42de9fd0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/hello", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/hello"
+    st_dev = 17
+    st_ino = 642117
+    st_mode = 0100644
+    st_nlink = 1
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 32768
+    st_blocks = 0
+    st_atime = 0x50a97ad5
+    st_mtime = 0x50a97ad5
+    st_ctime = 0x50a97ad5
+
+bb_getattr(path="/asdasd", statbuf=0x41de7fd0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/asdasd", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/asdasd"
+    st_dev = 17
+    st_ino = 642252
+    st_mode = 0100644
+    st_nlink = 1
+    st_uid = 239492
+    st_gid = 2626
+    st_rdev = 0
+    st_size = 9
+    st_blksize = 32768
+    st_blocks = 8
+    st_atime = 0x50a99ea3
+    st_mtime = 0x50a99ea3
+    st_ctime = 0x50a99ea3
+
+bb_getattr(path="/", statbuf=0x425e8fe0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/"
+    st_dev = 17
+    st_ino = 642101
+    st_mode = 040755
+    st_nlink = 2
+    st_uid = 239492
+    st_gid = 2626
+    st_rdev = 0
+    st_size = 4096
+    st_blksize = 32768
+    st_blocks = 8
+    st_atime = 0x50a97744
+    st_mtime = 0x50a99ea3
+    st_ctime = 0x50a99ea3
+
+bb_getattr(path="/hello", statbuf=0x42de9fd0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/hello", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/hello"
+    st_dev = 17
+    st_ino = 642117
+    st_mode = 0100644
+    st_nlink = 1
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 32768
+    st_blocks = 0
+    st_atime = 0x50a97ad5
+    st_mtime = 0x50a97ad5
+    st_ctime = 0x50a97ad5
+
+bb_getattr(path="/asdasd", statbuf=0x41de7fd0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/asdasd", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/asdasd"
+    st_dev = 17
+    st_ino = 642252
+    st_mode = 0100644
+    st_nlink = 1
+    st_uid = 239492
+    st_gid = 2626
+    st_rdev = 0
+    st_size = 9
+    st_blksize = 32768
+    st_blocks = 8
+    st_atime = 0x50a99ea3
+    st_mtime = 0x50a99ea3
+    st_ctime = 0x50a99ea3
+
+bb_getattr(path="/", statbuf=0x425e8fe0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/"
+    st_dev = 17
+    st_ino = 642101
+    st_mode = 040755
+    st_nlink = 2
+    st_uid = 239492
+    st_gid = 2626
+    st_rdev = 0
+    st_size = 4096
+    st_blksize = 32768
+    st_blocks = 8
+    st_atime = 0x50a97744
+    st_mtime = 0x50a99ea3
+    st_ctime = 0x50a99ea3
+
+bb_getattr(path="/hello", statbuf=0x42de9fd0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir", path = "/hello", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/.rootdir/hello"
+    st_dev = 17
+    st_ino = 642117
+    st_mode = 0100644
+    st_nlink = 1
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 32768
+    st_blocks = 0
+    st_atime = 0x50a97ad5
+    st_mtime = 0x50a97ad5
+    st_ctime = 0x50a97ad5
+
+>>>>>>> 157d3d2dd4774fb5265c0c7035d0906053efad09
 bb_destroy(userdata=0x00605010)

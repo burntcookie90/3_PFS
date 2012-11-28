@@ -9,118 +9,169 @@
 #include <stdio.h>
 #include <string.h>
 #include <libexif/exif-data.h>
+#include <time.h>
+
+//Hold date
+char year[5];
+char day[3];
+char monthName[10];
 
 /* Remove spaces on the right of the string */
 static void trim_spaces(char *buf)
 {
-    char *s = buf-1;
-    for (; *buf; ++buf) {
-        if (*buf != ' ')
-            s = buf;
-    }
-    *++s = 0; /* nul terminate the string on the first of the final spaces */
+	char *s = buf-1;
+	for (; *buf; ++buf) {
+		if (*buf != ' ')
+			s = buf;
+	}
+	*++s = 0; /* nul terminate the string on the first of the final spaces */
+}
+
+static int today(){
+	//if tag does not exist, print todays date
+	int monthNum;
+	struct tm *current;
+	time_t timenow;
+	time(&timenow);
+	current = localtime(&timenow);
+	monthNum = current->tm_mon+1;
+	day[sprintf(day, "%d", current->tm_mday)]='\0';
+	year[sprintf(year, "%d", current->tm_year+1900)]='\0';
+	return monthNum;
 }
 
 /* Show the tag name and contents if the tag exists */
-static void show_tag(ExifData *d, ExifIfd ifd, ExifTag tag)
+static int show_tag(ExifData *d, ExifIfd ifd, ExifTag tag)
 {
-    /* See if this tag exists */
-    ExifEntry *entry = exif_content_get_entry(d->ifd[ifd],tag);
-    if (entry) {
-        char buf[1024];
+	//hold month number
+	int monthNum = 1;
 
-        /* Get the contents of the tag in human-readable form */
-        exif_entry_get_value(entry, buf, sizeof(buf));
+	/* See if this tag exists */
+	ExifEntry *entry = exif_content_get_entry(d->ifd[ifd],tag);
+	if (entry) {
+		char buf[1024];
 
-        /* Don't bother printing it if it's entirely blank */
-        trim_spaces(buf);
-        if (*buf) {
-            printf("%s: %s\n", exif_tag_get_name_in_ifd(tag,ifd), buf);
-        }
-    }
+		// Get the contents of the tag in human-readable form 
+		exif_entry_get_value(entry, buf, sizeof(buf));
+
+		// Check if date is actually there
+		trim_spaces(buf);
+		if (*buf) {
+			if (tag==EXIF_TAG_DATE_TIME_ORIGINAL){
+				//Hold date
+				char month[3];		
+
+				//Extract date
+				memcpy(year,buf, 4);
+				year[4] = '\0';
+				memcpy(month, buf+5, 2);
+				month[2] = '\0';
+				monthNum = atoi(month);
+				memcpy(day, buf+8,2);
+				day[2] = '\0';
+			}
+		}else{
+			if (tag==EXIF_TAG_DATE_TIME_ORIGINAL){
+				//if no date is actually there, print todays date
+				monthNum =  today();
+			}
+		}
+
+	}else{
+		if (tag==EXIF_TAG_DATE_TIME_ORIGINAL){
+			//if tag does not exist, print todays date
+			monthNum = today();
+		}
+	}
+
+	if (tag==EXIF_TAG_DATE_TIME_ORIGINAL){ 
+		return monthNum;
+	}else{
+		return 0;
+	}
 }
 
-/* Show the given MakerNote tag if it exists */
-static void show_mnote_tag(ExifData *d, unsigned tag)
-{
-    ExifMnoteData *mn = exif_data_get_mnote_data(d);
-    if (mn) {
-        int num = exif_mnote_data_count(mn);
-        int i;
+void datePost(int monthNum){
 
-        /* Loop through all MakerNote tags, searching for the desired one */
-        for (i=0; i < num; ++i) {
-            char buf[1024];
-            if (exif_mnote_data_get_id(mn, i) == tag) {
-                if (exif_mnote_data_get_value(mn, i, buf, sizeof(buf))) {
-                    /* Don't bother printing it if it's entirely blank */
-                    trim_spaces(buf);
-                    if (*buf) {
-                        printf("%s: %s\n", exif_mnote_data_get_title(mn, i),
-                            buf);
-                    }
-                }
-            }
-        }
-    }
+	//Put month in word form
+	switch (monthNum){
+		case 1:
+			monthName[sprintf(monthName, "January")] = '\0';
+			break;
+		case 2:
+			monthName[sprintf(monthName, "February")] = '\0';
+			break;
+		case 3:
+			monthName[sprintf(monthName, "March")] = '\0';
+			break;
+		case 4:
+			monthName[sprintf(monthName, "April")] = '\0';
+			break;
+		case 5:
+			monthName[sprintf(monthName, "May")] = '\0';
+			break;
+		case 6:
+			monthName[sprintf(monthName, "June")] = '\0';
+			break;
+		case 7:
+			monthName[sprintf(monthName, "July")] = '\0';
+			break;
+		case 8:
+			monthName[sprintf(monthName, "August")] = '\0';
+			break;
+		case 9:
+			monthName[sprintf(monthName, "September")] = '\0';
+			break;
+		case 10:
+			monthName[sprintf(monthName, "October")] = '\0';
+			break;
+		case 11:
+			monthName[sprintf(monthName, "November")] = '\0';
+			break;
+		case 12:
+			monthName[sprintf(monthName, "December")] = '\0';
+			break;
+		default:
+			break;
+	}
+	printf("%s %s %s\n", day, monthName, year);
+
 }
 
 int main(int argc, char **argv)
 {
-    ExifData *ed;
-    ExifEntry *entry;
+	ExifData *ed;
+	ExifEntry *entry;
 
-    if (argc < 2) {
-        printf("Usage: %s image.jpg\n", argv[0]);
-        printf("Displays tags potentially relating to ownership "
-                "of the image.\n");
-        return 1;
-    }
+	//Check arguments
+	if (argc < 2) {
+		printf("Usage: %s image.jpg\n", argv[0]);
+		printf("Displays tags potentially relating to ownership "
+				"of the image.\n");
+		return 1;
+	}
+	/*
+	//Check for existence of file
+	if (FILE * file = fopen(argv[0], "r")){
+	fclose(file);
+	}else{
+	return 2;
+	}
+	*/
+	// Load an ExifData object from an EXIF file
+	ed = exif_data_new_from_file(argv[1]);
+	if (!ed) {
+		//Get current date
+		datePost(today());
+	}else{
+		//Get date
+		datePost(show_tag(ed, EXIF_IFD_EXIF, EXIF_TAG_DATE_TIME_ORIGINAL));
 
-    /* Load an ExifData object from an EXIF file */
-    ed = exif_data_new_from_file(argv[1]);
-    if (!ed) {
-        printf("File not readable or no EXIF data in file %s\n", argv[1]);
-        return 2;
-    }
+		// Free the EXIF data
+		exif_data_unref(ed);
+		>>>>>>> 157d3d2dd4774fb5265c0c7035d0906053efad09
+	}
 
-    /* Show all the tags that might contain information about the
-     * photographer
-     */
-    show_tag(ed, EXIF_IFD_EXIF, EXIF_TAG_CONTRAST);
-    show_tag(ed, EXIF_IFD_0, EXIF_TAG_XP_AUTHOR);
-    show_tag(ed, EXIF_IFD_0, EXIF_TAG_COPYRIGHT);
-
-    /* These are much less likely to be useful */
-    show_tag(ed, EXIF_IFD_EXIF, EXIF_TAG_USER_COMMENT);
-    show_tag(ed, EXIF_IFD_0, EXIF_TAG_IMAGE_DESCRIPTION);
-    show_tag(ed, EXIF_IFD_1, EXIF_TAG_IMAGE_DESCRIPTION);
-
-    /* A couple of MakerNote tags can contain useful data.  Read the
-     * manufacturer tag to see if this image could have one of the recognized
-     * MakerNote tags.
-     */
-    entry = exif_content_get_entry(ed->ifd[EXIF_IFD_0], EXIF_TAG_MAKE);
-    if (entry) {
-        char buf[64];
-
-        /* Get the contents of the manufacturer tag as a string */
-        if (exif_entry_get_value(entry, buf, sizeof(buf))) {
-            trim_spaces(buf);
-
-            if (!strcmp(buf, "Canon")) {
-                show_mnote_tag(ed, 9); /* MNOTE_CANON_TAG_OWNER */
-
-            } else if (!strcmp(buf, "Asahi Optical Co.,Ltd.") || 
-                       !strcmp(buf, "PENTAX Corporation")) {
-                show_mnote_tag(ed, 0x23); /* MNOTE_PENTAX2_TAG_HOMETOWN_CITY */
-            }
-        }
-    }
-
-    /* Free the EXIF data */
-    exif_data_unref(ed);
-
-    return 0;
+	return 0;
 }
 
