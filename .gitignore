@@ -1,2 +1,7 @@
 *.log
 a.out
+*.swp
+*.o
+mountdir/
+rootdir/
+bbfs
