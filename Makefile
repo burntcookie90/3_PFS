@@ -5,7 +5,7 @@ hamfs.o : hamfs.c  params.h
 	gcc -g -Wall `pkg-config fuse --cflags` -c hamfs.c
 
 clean:
-	rm -f hamfs.o
+	rm -f hamfs.o hamfs
 
 dist:
 	rm -rf fuse-tutorial/

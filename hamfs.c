@@ -30,7 +30,7 @@ static int ham_getattr(const char *path, struct stat *stbuf){
 
 	ham_fullpath(fpath, path);
 
-	retstat = lstat(fpath, statbuf);
+	retstat = lstat(fpath, stbuf);
 
 	if(retstat !=0)
 		retstat = ham_error("bb_getattr lstat");
@@ -41,7 +41,7 @@ static int ham_getattr(const char *path, struct stat *stbuf){
 static int ham_readdir(const char *path, void *buf, fuse_fill_dir_t filler, off_t offset, struct fuse_file_info *fi) {
 	int retstat = 0;
 	DIR *dp;
-	struct direct *de;
+	struct dirent *de;
 
 	dp = (DIR *) (uintptr_t) fi->fh;
 
@@ -84,9 +84,9 @@ static int ham_read(const char *path, char *buf, size_t size, off_t offset,struc
 
 	retstat = pread(fi->fh,buf,size,offset);
 	if(retstat<0)
-		restat = ham_error("ham_read read");
+		retstat = ham_error("ham_read read");
 
-	return restat;
+	return retstat;
 }
 
 int ham_mkdir(const char *path, mode_t mode){
@@ -109,7 +109,7 @@ static struct fuse_operations ham_oper= {
 	.readdir = ham_readdir,
 	.open   = ham_open,
 	.read   = ham_read,
-	.mkdir = ham_mkdir;
+	.mkdir = ham_mkdir,
 };
 
 
