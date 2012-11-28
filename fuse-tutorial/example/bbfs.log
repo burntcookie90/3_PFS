@@ -1,2 +1,3005 @@
 
 bb_init()
+
+bb_getattr(path="/", statbuf=0x416d5fe0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/rootdir", path = "/", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/rootdir/"
+    st_dev = 17
+    st_ino = 642400
+    st_mode = 040755
+    st_nlink = 3
+    st_uid = 239492
+    st_gid = 2626
+    st_rdev = 0
+    st_size = 4096
+    st_blksize = 32768
+    st_blocks = 8
+    st_atime = 0x50b562b3
+    st_mtime = 0x50b65e39
+    st_ctime = 0x50b65e39
+
+bb_getxattr(path = "/", name = "system.posix_acl_access", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/rootdir", path = "/", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/rootdir/"
+    ERROR bb_getxattr lgetxattr: No data available
+
+bb_getxattr(path = "/", name = "system.posix_acl_default", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/rootdir", path = "/", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/rootdir/"
+    ERROR bb_getxattr lgetxattr: No data available
+
+bb_getattr(path="/", statbuf=0x40dabfe0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/rootdir", path = "/", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/rootdir/"
+    st_dev = 17
+    st_ino = 642400
+    st_mode = 040755
+    st_nlink = 3
+    st_uid = 239492
+    st_gid = 2626
+    st_rdev = 0
+    st_size = 4096
+    st_blksize = 32768
+    st_blocks = 8
+    st_atime = 0x50b562b3
+    st_mtime = 0x50b65e39
+    st_ctime = 0x50b65e39
+
+bb_getxattr(path = "/", name = "system.posix_acl_access", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/rootdir", path = "/", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/rootdir/"
+    ERROR bb_getxattr lgetxattr: No data available
+
+bb_getxattr(path = "/", name = "system.posix_acl_default", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/rootdir", path = "/", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/rootdir/"
+    ERROR bb_getxattr lgetxattr: No data available
+
+bb_getattr(path="/", statbuf=0x416d5fe0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/rootdir", path = "/", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/rootdir/"
+    st_dev = 17
+    st_ino = 642400
+    st_mode = 040755
+    st_nlink = 2
+    st_uid = 239492
+    st_gid = 2626
+    st_rdev = 0
+    st_size = 4096
+    st_blksize = 32768
+    st_blocks = 8
+    st_atime = 0x50b562b3
+    st_mtime = 0x50b65ed1
+    st_ctime = 0x50b65ed1
+
+bb_getattr(path="/n", statbuf=0x40dabfd0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/rootdir", path = "/n", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/rootdir/n"
+    ERROR bb_getattr lstat: No such file or directory
+    st_dev = 0
+    st_ino = 0
+    st_mode = 00
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+
+bb_getattr(path="/n", statbuf=0x416d5fd0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/rootdir", path = "/n", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/rootdir/n"
+    ERROR bb_getattr lstat: No such file or directory
+    st_dev = 0
+    st_ino = 0
+    st_mode = 00
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+
+bb_getattr(path="/n", statbuf=0x40dabfd0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/rootdir", path = "/n", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/rootdir/n"
+    ERROR bb_getattr lstat: No such file or directory
+    st_dev = 0
+    st_ino = 0
+    st_mode = 00
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+
+bb_create(path="/n", mode=0100644, fi=0x416d60c0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/rootdir", path = "/n", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/rootdir/n"
+    flags = 0x00008041
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_fgetattr(path="/n", statbuf=0x416d5f90, fi=0x416d60c0)
+    flags = 0x00008041
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+    st_dev = 17
+    st_ino = 642170
+    st_mode = 0100644
+    st_nlink = 1
+    st_uid = 239492
+    st_gid = 2626
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 32768
+    st_blocks = 0
+    st_atime = 0x50b65ed8
+    st_mtime = 0x50b65ed8
+    st_ctime = 0x50b65ed8
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=0, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=4096, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=8192, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=12288, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=16384, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=20480, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=24576, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=28672, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=32768, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=36864, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=40960, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=45056, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=49152, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=53248, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=57344, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=61440, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=65536, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=69632, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=73728, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=77824, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=81920, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=86016, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=90112, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=94208, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=98304, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=102400, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=106496, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=110592, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=114688, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=118784, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=122880, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=126976, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=131072, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=135168, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=139264, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=143360, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=147456, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=151552, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=155648, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=159744, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=163840, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=167936, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=172032, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=176128, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=180224, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=184320, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=188416, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=192512, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=196608, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=200704, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=204800, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=208896, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=212992, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=217088, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=221184, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=225280, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=229376, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=233472, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=237568, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=241664, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=245760, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=249856, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=253952, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=258048, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=262144, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=266240, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=270336, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=274432, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=278528, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=282624, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=286720, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=290816, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=294912, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=299008, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=303104, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=307200, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=311296, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=315392, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=319488, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=323584, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=327680, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=331776, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=335872, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=339968, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=344064, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=348160, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=352256, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=356352, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=360448, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=364544, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=368640, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=372736, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=376832, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=380928, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=385024, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=389120, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=393216, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=397312, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=401408, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=405504, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=409600, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=413696, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=417792, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=421888, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=425984, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=430080, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=434176, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=438272, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=442368, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=446464, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=450560, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=454656, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=458752, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=462848, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=466944, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=471040, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=475136, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=479232, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=483328, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=487424, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=491520, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=495616, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=499712, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=503808, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=507904, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=512000, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=516096, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=520192, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=524288, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=528384, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=532480, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=536576, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=540672, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=544768, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=548864, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=552960, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=557056, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=561152, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=565248, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=569344, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=573440, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=577536, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=581632, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=585728, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=589824, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=593920, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=598016, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=602112, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=606208, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=610304, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=614400, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=618496, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=622592, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=626688, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=630784, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=634880, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=638976, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=643072, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=647168, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=651264, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=655360, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=659456, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=663552, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=667648, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=671744, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=675840, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=679936, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=684032, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=688128, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=692224, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=696320, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=700416, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=704512, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=708608, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=712704, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=716800, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=720896, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=724992, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=729088, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=733184, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=737280, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=741376, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=745472, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=749568, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=753664, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=757760, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=761856, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=765952, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=770048, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=774144, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=778240, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=782336, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=786432, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=790528, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=794624, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=798720, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=802816, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=806912, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=811008, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=815104, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=819200, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=823296, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=827392, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=831488, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=835584, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=839680, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=843776, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=847872, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=851968, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=856064, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=860160, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=864256, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=868352, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=872448, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=876544, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=880640, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=884736, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=888832, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=892928, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=897024, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=901120, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=905216, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=909312, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=913408, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=917504, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=921600, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=925696, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=929792, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=933888, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=937984, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=942080, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=946176, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=950272, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=954368, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=958464, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=962560, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=966656, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=970752, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=974848, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=978944, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=983040, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=987136, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=991232, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=995328, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=999424, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=1003520, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=1007616, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=1011712, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=1015808, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=1019904, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=1024000, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=1028096, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=1032192, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=1036288, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=1040384, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=1044480, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=1048576, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=1052672, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=1056768, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=1060864, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=1064960, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=1069056, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=1073152, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=1077248, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=1081344, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=1085440, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=1089536, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=1093632, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=1097728, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=1101824, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=1105920, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=1110016, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=1114112, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=1118208, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=1122304, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=1126400, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=1130496, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=1134592, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=1138688, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=1142784, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=1146880, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=1150976, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=1155072, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=1159168, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=1163264, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=1167360, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=1171456, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=1175552, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=1179648, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=1183744, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=1187840, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=1191936, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=1196032, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=1200128, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=1204224, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=1208320, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=1212416, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=1216512, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=1220608, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=1224704, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=1228800, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=1232896, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=1236992, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=1241088, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=1245184, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=1249280, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=1253376, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=1257472, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=4096, offset=1261568, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70ca2050, size=4096, offset=1265664, fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_write(path="/n", buf=0x70cc4050, size=1755, offset=1269760, fi=0x40dac0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_flush(path="/n", fi=0x416d60c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0xa7fbcbf074176a4f
+
+bb_release(path="/n", fi=0x40dac0c0)
+    flags = 0x00008001
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/rootdir", path = "/n", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/rootdir/n"
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/rootdir", path = "/", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/rootdir/"
+
+22 September 2012
+
+bb_mkdir(path="/2012/", mode=0755)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/rootdir", path = "/2012/", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/rootdir/2012/"
+
+bb_mkdir(path="/2012/September/", mode=0755)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/rootdir", path = "/2012/September/", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/rootdir/2012/September/"
+
+bb_mkdir(path="/2012/September/22", mode=0755)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/rootdir", path = "/2012/September/22", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/rootdir/2012/September/22"
+uno:/nethome/sdr3/proj3/proj3/fuse-tutorial/example/rootdir/n
+dos:/2012/September/22/n
+
+bb_getattr(path="/", statbuf=0x416d5fe0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/rootdir", path = "/", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/rootdir/"
+    st_dev = 17
+    st_ino = 642400
+    st_mode = 040755
+    st_nlink = 3
+    st_uid = 239492
+    st_gid = 2626
+    st_rdev = 0
+    st_size = 4096
+    st_blksize = 32768
+    st_blocks = 8
+    st_atime = 0x50b562b3
+    st_mtime = 0x50b65ed8
+    st_ctime = 0x50b65ed8
+
+bb_getxattr(path = "/", name = "system.posix_acl_access", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/rootdir", path = "/", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/rootdir/"
+    ERROR bb_getxattr lgetxattr: No data available
+
+bb_getxattr(path = "/", name = "system.posix_acl_default", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/rootdir", path = "/", fpath = "/nethome/sdr3/proj3/proj3/fuse-tutorial/example/rootdir/"
+    ERROR bb_getxattr lgetxattr: No data available

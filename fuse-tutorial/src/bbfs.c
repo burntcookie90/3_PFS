@@ -1196,7 +1196,7 @@ int exifData(char argv[])
     bb_mkdir(fpath2,  0755);
     
    
-    sprintf(fpath2, "%s%s%s",fpath2 ,argv);
+    sprintf(fpath2, "%s%s",fpath2 ,argv);
 log_msg("uno:%s\n", fpath);
 log_msg("dos:%s\n", fpath2);
 /*
