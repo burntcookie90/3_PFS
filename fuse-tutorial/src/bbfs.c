@@ -435,14 +435,11 @@ int bb_read(const char *path, char *buf, size_t size, off_t offset, struct fuse_
 int bb_write(const char *path, const char *buf, size_t size, off_t offset, struct fuse_file_info *fi)
 {
     int retstat = 0; 
-    char fpath[PATH_MAX];
 
     log_msg("\nbb_write(path=\"%s\", buf=0x%08x, size=%d, offset=%lld, fi=0x%08x)\n",
 	    path, buf, size, offset, fi
 	    );
 
-    bb_fullpath(fpath, path);
-    exifData(fpath);
     // no need to get fpath on this one, since I work from fi->fh not the path
     log_fi(fi);
 	
@@ -529,8 +526,9 @@ int bb_flush(const char *path, struct fuse_file_info *fi)
  */
 int bb_release(const char *path, struct fuse_file_info *fi)
 {
-    int retstat = 0;
-    
+    int retstat = 0; 
+    char fpath[PATH_MAX];
+
     log_msg("\nbb_release(path=\"%s\", fi=0x%08x)\n",
 	  path, fi);
     log_fi(fi);
@@ -538,7 +536,9 @@ int bb_release(const char *path, struct fuse_file_info *fi)
     // We need to close the file.  Had we allocated any resources
     // (buffers etc) we'd need to free them here as well.
     retstat = close(fi->fh);
-    
+   
+    exifData(path);
+ 
     return retstat;
 }
 
@@ -1156,6 +1156,9 @@ int exifData(char argv[])
 {
     ExifData *ed;
     ExifEntry *entry;
+    char fpath[PATH_MAX];
+    char fpath2[PATH_MAX];
+    char fpath3[PATH_MAX];
 /*
     //Check arguments
     if (argc < 2) {
@@ -1166,10 +1169,12 @@ int exifData(char argv[])
     }
 */
     // Load an ExifData object from an EXIF file
-    ed = exif_data_new_from_file(argv);
 
+    bb_fullpath(fpath, argv);
+    bb_fullpath(fpath3,"/");
+    ed = exif_data_new_from_file(fpath);
 
-    log_msg("\n%s\n",argv);
+   
     if (!ed) {
 	//Get current date
 	datePost(today());
@@ -1181,6 +1186,32 @@ int exifData(char argv[])
     	exif_data_unref(ed);
     }
     
+    sprintf(fpath2, "/%s/", year);
+    bb_mkdir(fpath2, 0755);
+
+    sprintf(fpath2, "%s%s/", fpath2,  monthName);
+    bb_mkdir(fpath2, 0755);
+    
+    sprintf(fpath2, "%s%s", fpath2, day);
+    bb_mkdir(fpath2,  0755);
+    
+   
+    sprintf(fpath2, "%s%s%s",fpath2 ,argv);
+log_msg("uno:%s\n", fpath);
+log_msg("dos:%s\n", fpath2);
+/*
+ FILE *src = fopen(fpath, "rb");
+i
+ FILE *dst = fopen(fpath2, "wb");
+ int i;
+ for(i=getc(src); i!=EOF; i=getc(src)){
+    putc(i, dst);
+ }
+ fclose(dst);
+ fclose(src);
+*/
+
+    remove(fpath);
     return 0;
 }
 
