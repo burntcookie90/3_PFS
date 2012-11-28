@@ -1,3 +1,9 @@
+*.log
+a.out
 *.swp
 sqlite-autoconf-3071401
 sqlite-autoconf-3071401.tar.gz
+*.o
+mountdir/
+rootdir/
+bbfs
