@@ -169,7 +169,6 @@ int main(int argc, char **argv)
 
 		// Free the EXIF data
 		exif_data_unref(ed);
-		>>>>>>> 157d3d2dd4774fb5265c0c7035d0906053efad09
 	}
 
 	return 0;

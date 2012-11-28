@@ -138,24 +138,17 @@ void datePost(int monthNum){
 
 }
 
-int main(int argc, char **argv)
+int exifData(char **argv)
 {
     ExifData *ed;
     ExifEntry *entry;
-
+/*
     //Check arguments
     if (argc < 2) {
         printf("Usage: %s image.jpg\n", argv[0]);
         printf("Displays tags potentially relating to ownership "
                 "of the image.\n");
         return 1;
-    }
-/*
-    //Check for existence of file
-    if (FILE * file = fopen(argv[0], "r")){
-        fclose(file);
-    }else{
-    	return 2;
     }
 */
     // Load an ExifData object from an EXIF file
