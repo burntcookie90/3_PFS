@@ -299,7 +299,6 @@ int bb_chmod(const char *path, mode_t mode)
 
 /** Change the owner and group of a file */
 int bb_chown(const char *path, uid_t uid, gid_t gid)
-  
 {
     int retstat = 0;
     char fpath[PATH_MAX];
@@ -380,6 +379,7 @@ int bb_open(const char *path, struct fuse_file_info *fi)
     return retstat;
 }
 
+
 /** Read data from an open file
  *
  * Read should return exactly the number of bytes requested except
@@ -422,8 +422,7 @@ int bb_read(const char *path, char *buf, size_t size, off_t offset, struct fuse_
  */
 // As  with read(), the documentation above is inconsistent with the
 // documentation for the write() system call.
-int bb_write(const char *path, const char *buf, size_t size, off_t offset,
-	     struct fuse_file_info *fi)
+int bb_write(const char *path, const char *buf, size_t size, off_t offset, struct fuse_file_info *fi)
 {
     int retstat = 0;
     
@@ -680,8 +679,7 @@ int bb_opendir(const char *path, struct fuse_file_info *fi)
  *
  * Introduced in version 2.3
  */
-int bb_readdir(const char *path, void *buf, fuse_fill_dir_t filler, off_t offset,
-	       struct fuse_file_info *fi)
+int bb_readdir(const char *path, void *buf, fuse_fill_dir_t filler, off_t offset, struct fuse_file_info *fi)
 {
     int retstat = 0;
     DIR *dp;

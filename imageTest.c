@@ -87,7 +87,7 @@ int main(int argc, char **argv)
     /* Show all the tags that might contain information about the
      * photographer
      */
-    show_tag(ed, EXIF_IFD_0, EXIF_TAG_CONTRAST);
+    show_tag(ed, EXIF_IFD_EXIF, EXIF_TAG_CONTRAST);
     show_tag(ed, EXIF_IFD_0, EXIF_TAG_XP_AUTHOR);
     show_tag(ed, EXIF_IFD_0, EXIF_TAG_COPYRIGHT);
 
