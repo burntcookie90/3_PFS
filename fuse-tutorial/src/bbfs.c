@@ -1,28 +1,28 @@
 /*
-  Big Brother File System
-  Copyright (C) 2012 Joseph J. Pfeiffer, Jr., Ph.D. <pfeiffer@cs.nmsu.edu>
+   Big Brother File System
+   Copyright (C) 2012 Joseph J. Pfeiffer, Jr., Ph.D. <pfeiffer@cs.nmsu.edu>
 
-  This program can be distributed under the terms of the GNU GPLv3.
-  See the file COPYING.
+   This program can be distributed under the terms of the GNU GPLv3.
+   See the file COPYING.
 
-  This code is derived from function prototypes found /usr/include/fuse/fuse.h
-  Copyright (C) 2001-2007  Miklos Szeredi <miklos@szeredi.hu>
-  His code is licensed under the LGPLv2.
-  A copy of that code is included in the file fuse.h
-  
-  The point of this FUSE filesystem is to provide an introduction to
-  FUSE.  It was my first FUSE filesystem as I got to know the
-  software; hopefully, the comments in this code will help people who
-  follow later to get a gentler introduction.
+   This code is derived from function prototypes found /usr/include/fuse/fuse.h
+   Copyright (C) 2001-2007  Miklos Szeredi <miklos@szeredi.hu>
+   His code is licensed under the LGPLv2.
+   A copy of that code is included in the file fuse.h
 
-  This might be called a no-op filesystem:  it doesn't impose
-  filesystem semantics on top of any other existing structure.  It
-  simply reports the requests that come in, and passes them to an
-  underlying filesystem.  The information is saved in a logfile named
-  bbfs.log, in the directory from which you run bbfs.
+   The point of this FUSE filesystem is to provide an introduction to
+   FUSE.  It was my first FUSE filesystem as I got to know the
+   software; hopefully, the comments in this code will help people who
+   follow later to get a gentler introduction.
 
-  gcc -Wall `pkg-config fuse --cflags --libs` -o bbfs bbfs.c
-*/
+   This might be called a no-op filesystem:  it doesn't impose
+   filesystem semantics on top of any other existing structure.  It
+   simply reports the requests that come in, and passes them to an
+   underlying filesystem.  The information is saved in a logfile named
+   bbfs.log, in the directory from which you run bbfs.
+
+   gcc -Wall `pkg-config fuse --cflags --libs` -o bbfs bbfs.c
+   */
 
 #include "params.h"
 
@@ -55,14 +55,17 @@ char monthName[10];
 
 int sqlite3_stuff();
 
+//Creates a handle for the database connection
+sqlite3 *handle;
+
 // Report errors to logfile and give -errno to caller
 static int bb_error(char *str)
 {
-    int ret = -errno;
-    
-    log_msg("    ERROR %s: %s\n", str, strerror(errno));
-    
-    return ret;
+	int ret = -errno;
+
+	log_msg("    ERROR %s: %s\n", str, strerror(errno));
+
+	return ret;
 }
 
 // Check whether the given user is permitted to perform the given operation on the given 
@@ -74,12 +77,12 @@ static int bb_error(char *str)
 //  it.
 static void bb_fullpath(char fpath[PATH_MAX], const char *path)
 {
-    strcpy(fpath, BB_DATA->rootdir);
-    strncat(fpath, path, PATH_MAX); // ridiculously long paths will
-				    // break here
+	strcpy(fpath, BB_DATA->rootdir);
+	strncat(fpath, path, PATH_MAX); // ridiculously long paths will
+	// break here
 
-    log_msg("    bb_fullpath:  rootdir = \"%s\", path = \"%s\", fpath = \"%s\"\n",
-	    BB_DATA->rootdir, path, fpath);
+	log_msg("    bb_fullpath:  rootdir = \"%s\", path = \"%s\", fpath = \"%s\"\n",
+			BB_DATA->rootdir, path, fpath);
 }
 
 ///////////////////////////////////////////////////////////
@@ -95,20 +98,20 @@ static void bb_fullpath(char fpath[PATH_MAX], const char *path)
  */
 int bb_getattr(const char *path, struct stat *statbuf)
 {
-    int retstat = 0;
-    char fpath[PATH_MAX];
-    
-    log_msg("\nbb_getattr(path=\"%s\", statbuf=0x%08x)\n",
-	  path, statbuf);
-    bb_fullpath(fpath, path);
-    
-    retstat = lstat(fpath, statbuf);
-    if (retstat != 0)
-	retstat = bb_error("bb_getattr lstat");
-    
-    log_stat(statbuf);
-    
-    return retstat;
+	int retstat = 0;
+	char fpath[PATH_MAX];
+
+	log_msg("\nbb_getattr(path=\"%s\", statbuf=0x%08x)\n",
+			path, statbuf);
+	bb_fullpath(fpath, path);
+
+	retstat = lstat(fpath, statbuf);
+	if (retstat != 0)
+		retstat = bb_error("bb_getattr lstat");
+
+	log_stat(statbuf);
+
+	return retstat;
 }
 
 /** Read the target of a symbolic link
@@ -125,22 +128,22 @@ int bb_getattr(const char *path, struct stat *statbuf)
 // bb_readlink() code by Bernardo F Costa (thanks!)
 int bb_readlink(const char *path, char *link, size_t size)
 {
-    int retstat = 0;
-    char fpath[PATH_MAX];
-    
-    log_msg("bb_readlink(path=\"%s\", link=\"%s\", size=%d)\n",
-	  path, link, size);
-    bb_fullpath(fpath, path);
-    
-    retstat = readlink(fpath, link, size - 1);
-    if (retstat < 0)
-	retstat = bb_error("bb_readlink readlink");
-    else  {
-	link[retstat] = '\0';
-	retstat = 0;
-    }
-    
-    return retstat;
+	int retstat = 0;
+	char fpath[PATH_MAX];
+
+	log_msg("bb_readlink(path=\"%s\", link=\"%s\", size=%d)\n",
+			path, link, size);
+	bb_fullpath(fpath, path);
+
+	retstat = readlink(fpath, link, size - 1);
+	if (retstat < 0)
+		retstat = bb_error("bb_readlink readlink");
+	else  {
+		link[retstat] = '\0';
+		retstat = 0;
+	}
+
+	return retstat;
 }
 
 /** Create a file node
@@ -151,87 +154,87 @@ int bb_readlink(const char *path, char *link, size_t size)
 // shouldn't that comment be "if" there is no.... ?
 int bb_mknod(const char *path, mode_t mode, dev_t dev)
 {
-    int retstat = 0;
-    char fpath[PATH_MAX];
-    
-    log_msg("\nbb_mknod(path=\"%s\", mode=0%3o, dev=%lld)\n",
-	  path, mode, dev);
-    bb_fullpath(fpath, path);
-    
-    // On Linux this could just be 'mknod(path, mode, rdev)' but this
-    //  is more portable
-    if (S_ISREG(mode)) {
-        retstat = open(fpath, O_CREAT | O_EXCL | O_WRONLY, mode);
-	if (retstat < 0)
-	    retstat = bb_error("bb_mknod open");
-        else {
-            retstat = close(retstat);
-	    if (retstat < 0)
-		retstat = bb_error("bb_mknod close");
-	}
-    } else
-	if (S_ISFIFO(mode)) {
-	    retstat = mkfifo(fpath, mode);
-	    if (retstat < 0)
-		retstat = bb_error("bb_mknod mkfifo");
-	} else {
-	    retstat = mknod(fpath, mode, dev);
-	    if (retstat < 0)
-		retstat = bb_error("bb_mknod mknod");
-	}
-    
-    return retstat;
+	int retstat = 0;
+	char fpath[PATH_MAX];
+
+	log_msg("\nbb_mknod(path=\"%s\", mode=0%3o, dev=%lld)\n",
+			path, mode, dev);
+	bb_fullpath(fpath, path);
+
+	// On Linux this could just be 'mknod(path, mode, rdev)' but this
+	//  is more portable
+	if (S_ISREG(mode)) {
+		retstat = open(fpath, O_CREAT | O_EXCL | O_WRONLY, mode);
+		if (retstat < 0)
+			retstat = bb_error("bb_mknod open");
+		else {
+			retstat = close(retstat);
+			if (retstat < 0)
+				retstat = bb_error("bb_mknod close");
+		}
+	} else
+		if (S_ISFIFO(mode)) {
+			retstat = mkfifo(fpath, mode);
+			if (retstat < 0)
+				retstat = bb_error("bb_mknod mkfifo");
+		} else {
+			retstat = mknod(fpath, mode, dev);
+			if (retstat < 0)
+				retstat = bb_error("bb_mknod mknod");
+		}
+
+	return retstat;
 }
 
 /** Create a directory */
 int bb_mkdir(const char *path, mode_t mode)
 {
-    int retstat = 0;
-    char fpath[PATH_MAX];
-    
-    log_msg("\nbb_mkdir(path=\"%s\", mode=0%3o)\n",
-	    path, mode);
-    bb_fullpath(fpath, path);
-    
-    retstat = mkdir(fpath, mode);
-    if (retstat < 0)
-	retstat = bb_error("bb_mkdir mkdir");
-    
-    return retstat;
+	int retstat = 0;
+	char fpath[PATH_MAX];
+
+	log_msg("\nbb_mkdir(path=\"%s\", mode=0%3o)\n",
+			path, mode);
+	bb_fullpath(fpath, path);
+
+	retstat = mkdir(fpath, mode);
+	if (retstat < 0)
+		retstat = bb_error("bb_mkdir mkdir");
+
+	return retstat;
 }
 
 /** Remove a file */
 int bb_unlink(const char *path)
 {
-    int retstat = 0;
-    char fpath[PATH_MAX];
-    
-    log_msg("bb_unlink(path=\"%s\")\n",
-	    path);
-    bb_fullpath(fpath, path);
-    
-    retstat = unlink(fpath);
-    if (retstat < 0)
-	retstat = bb_error("bb_unlink unlink");
-    
-    return retstat;
+	int retstat = 0;
+	char fpath[PATH_MAX];
+
+	log_msg("bb_unlink(path=\"%s\")\n",
+			path);
+	bb_fullpath(fpath, path);
+
+	retstat = unlink(fpath);
+	if (retstat < 0)
+		retstat = bb_error("bb_unlink unlink");
+
+	return retstat;
 }
 
 /** Remove a directory */
 int bb_rmdir(const char *path)
 {
-    int retstat = 0;
-    char fpath[PATH_MAX];
-    
-    log_msg("bb_rmdir(path=\"%s\")\n",
-	    path);
-    bb_fullpath(fpath, path);
-    
-    retstat = rmdir(fpath);
-    if (retstat < 0)
-	retstat = bb_error("bb_rmdir rmdir");
-    
-    return retstat;
+	int retstat = 0;
+	char fpath[PATH_MAX];
+
+	log_msg("bb_rmdir(path=\"%s\")\n",
+			path);
+	bb_fullpath(fpath, path);
+
+	retstat = rmdir(fpath);
+	if (retstat < 0)
+		retstat = bb_error("bb_rmdir rmdir");
+
+	return retstat;
 }
 
 /** Create a symbolic link */
@@ -241,125 +244,125 @@ int bb_rmdir(const char *path)
 // unaltered, but insert the link into the mounted directory.
 int bb_symlink(const char *path, const char *link)
 {
-    int retstat = 0;
-    char flink[PATH_MAX];
-    
-    log_msg("\nbb_symlink(path=\"%s\", link=\"%s\")\n",
-	    path, link);
-    bb_fullpath(flink, link);
-    
-    retstat = symlink(path, flink);
-    if (retstat < 0)
-	retstat = bb_error("bb_symlink symlink");
-    
-    return retstat;
+	int retstat = 0;
+	char flink[PATH_MAX];
+
+	log_msg("\nbb_symlink(path=\"%s\", link=\"%s\")\n",
+			path, link);
+	bb_fullpath(flink, link);
+
+	retstat = symlink(path, flink);
+	if (retstat < 0)
+		retstat = bb_error("bb_symlink symlink");
+
+	return retstat;
 }
 
 /** Rename a file */
 // both path and newpath are fs-relative
 int bb_rename(const char *path, const char *newpath)
 {
-    int retstat = 0;
-    char fpath[PATH_MAX];
-    char fnewpath[PATH_MAX];
-    
-    log_msg("\nbb_rename(fpath=\"%s\", newpath=\"%s\")\n",
-	    path, newpath);
-    bb_fullpath(fpath, path);
-    bb_fullpath(fnewpath, newpath);
-    
-    retstat = rename(fpath, fnewpath);
-    if (retstat < 0)
-	retstat = bb_error("bb_rename rename");
-    
-    return retstat;
+	int retstat = 0;
+	char fpath[PATH_MAX];
+	char fnewpath[PATH_MAX];
+
+	log_msg("\nbb_rename(fpath=\"%s\", newpath=\"%s\")\n",
+			path, newpath);
+	bb_fullpath(fpath, path);
+	bb_fullpath(fnewpath, newpath);
+
+	retstat = rename(fpath, fnewpath);
+	if (retstat < 0)
+		retstat = bb_error("bb_rename rename");
+
+	return retstat;
 }
 
 /** Create a hard link to a file */
 int bb_link(const char *path, const char *newpath)
 {
-    int retstat = 0;
-    char fpath[PATH_MAX], fnewpath[PATH_MAX];
-    
-    log_msg("\nbb_link(path=\"%s\", newpath=\"%s\")\n",
-	    path, newpath);
-    bb_fullpath(fpath, path);
-    bb_fullpath(fnewpath, newpath);
-    
-    retstat = link(fpath, fnewpath);
-    if (retstat < 0)
-	retstat = bb_error("bb_link link");
-    
-    return retstat;
+	int retstat = 0;
+	char fpath[PATH_MAX], fnewpath[PATH_MAX];
+
+	log_msg("\nbb_link(path=\"%s\", newpath=\"%s\")\n",
+			path, newpath);
+	bb_fullpath(fpath, path);
+	bb_fullpath(fnewpath, newpath);
+
+	retstat = link(fpath, fnewpath);
+	if (retstat < 0)
+		retstat = bb_error("bb_link link");
+
+	return retstat;
 }
 
 /** Change the permission bits of a file */
 int bb_chmod(const char *path, mode_t mode)
 {
-    int retstat = 0;
-    char fpath[PATH_MAX];
-    
-    log_msg("\nbb_chmod(fpath=\"%s\", mode=0%03o)\n",
-	    path, mode);
-    bb_fullpath(fpath, path);
-    
-    retstat = chmod(fpath, mode);
-    if (retstat < 0)
-	retstat = bb_error("bb_chmod chmod");
-    
-    return retstat;
+	int retstat = 0;
+	char fpath[PATH_MAX];
+
+	log_msg("\nbb_chmod(fpath=\"%s\", mode=0%03o)\n",
+			path, mode);
+	bb_fullpath(fpath, path);
+
+	retstat = chmod(fpath, mode);
+	if (retstat < 0)
+		retstat = bb_error("bb_chmod chmod");
+
+	return retstat;
 }
 
 /** Change the owner and group of a file */
 int bb_chown(const char *path, uid_t uid, gid_t gid)
 {
-    int retstat = 0;
-    char fpath[PATH_MAX];
-    
-    log_msg("\nbb_chown(path=\"%s\", uid=%d, gid=%d)\n",
-	    path, uid, gid);
-    bb_fullpath(fpath, path);
-    
-    retstat = chown(fpath, uid, gid);
-    if (retstat < 0)
-	retstat = bb_error("bb_chown chown");
-    
-    return retstat;
+	int retstat = 0;
+	char fpath[PATH_MAX];
+
+	log_msg("\nbb_chown(path=\"%s\", uid=%d, gid=%d)\n",
+			path, uid, gid);
+	bb_fullpath(fpath, path);
+
+	retstat = chown(fpath, uid, gid);
+	if (retstat < 0)
+		retstat = bb_error("bb_chown chown");
+
+	return retstat;
 }
 
 /** Change the size of a file */
 int bb_truncate(const char *path, off_t newsize)
 {
-    int retstat = 0;
-    char fpath[PATH_MAX];
-    
-    log_msg("\nbb_truncate(path=\"%s\", newsize=%lld)\n",
-	    path, newsize);
-    bb_fullpath(fpath, path);
-    
-    retstat = truncate(fpath, newsize);
-    if (retstat < 0)
-	bb_error("bb_truncate truncate");
-    
-    return retstat;
+	int retstat = 0;
+	char fpath[PATH_MAX];
+
+	log_msg("\nbb_truncate(path=\"%s\", newsize=%lld)\n",
+			path, newsize);
+	bb_fullpath(fpath, path);
+
+	retstat = truncate(fpath, newsize);
+	if (retstat < 0)
+		bb_error("bb_truncate truncate");
+
+	return retstat;
 }
 
 /** Change the access and/or modification times of a file */
 /* note -- I'll want to change this as soon as 2.6 is in debian testing */
 int bb_utime(const char *path, struct utimbuf *ubuf)
 {
-    int retstat = 0;
-    char fpath[PATH_MAX];
-    
-    log_msg("\nbb_utime(path=\"%s\", ubuf=0x%08x)\n",
-	    path, ubuf);
-    bb_fullpath(fpath, path);
-    
-    retstat = utime(fpath, ubuf);
-    if (retstat < 0)
-	retstat = bb_error("bb_utime utime");
-    
-    return retstat;
+	int retstat = 0;
+	char fpath[PATH_MAX];
+
+	log_msg("\nbb_utime(path=\"%s\", ubuf=0x%08x)\n",
+			path, ubuf);
+	bb_fullpath(fpath, path);
+
+	retstat = utime(fpath, ubuf);
+	if (retstat < 0)
+		retstat = bb_error("bb_utime utime");
+
+	return retstat;
 }
 
 /** File open operation
@@ -374,22 +377,22 @@ int bb_utime(const char *path, struct utimbuf *ubuf)
  */
 int bb_open(const char *path, struct fuse_file_info *fi)
 {
-    int retstat = 0;
-    int fd;
-    char fpath[PATH_MAX];
-    
-    log_msg("\nbb_open(path\"%s\", fi=0x%08x)\n",
-	    path, fi);
-    bb_fullpath(fpath, path);
-    
-    fd = open(fpath, fi->flags);
-    if (fd < 0)
-	retstat = bb_error("bb_open open");
-    
-    fi->fh = fd;
-    log_fi(fi);
-    
-    return retstat;
+	int retstat = 0;
+	int fd;
+	char fpath[PATH_MAX];
+
+	log_msg("\nbb_open(path\"%s\", fi=0x%08x)\n",
+			path, fi);
+	bb_fullpath(fpath, path);
+
+	fd = open(fpath, fi->flags);
+	if (fd < 0)
+		retstat = bb_error("bb_open open");
+
+	fi->fh = fd;
+	log_fi(fi);
+
+	return retstat;
 }
 
 
@@ -411,18 +414,18 @@ int bb_open(const char *path, struct fuse_file_info *fi)
 // returned by read.
 int bb_read(const char *path, char *buf, size_t size, off_t offset, struct fuse_file_info *fi)
 {
-    int retstat = 0;
-    
-    log_msg("\nbb_read(path=\"%s\", buf=0x%08x, size=%d, offset=%lld, fi=0x%08x)\n",
-	    path, buf, size, offset, fi);
-    // no need to get fpath on this one, since I work from fi->fh not the path
-    log_fi(fi);
-    
-    retstat = pread(fi->fh, buf, size, offset);
-    if (retstat < 0)
-	retstat = bb_error("bb_read read");
-    
-    return retstat;
+	int retstat = 0;
+
+	log_msg("\nbb_read(path=\"%s\", buf=0x%08x, size=%d, offset=%lld, fi=0x%08x)\n",
+			path, buf, size, offset, fi);
+	// no need to get fpath on this one, since I work from fi->fh not the path
+	log_fi(fi);
+
+	retstat = pread(fi->fh, buf, size, offset);
+	if (retstat < 0)
+		retstat = bb_error("bb_read read");
+
+	return retstat;
 }
 
 /** Write data to an open file
@@ -437,20 +440,20 @@ int bb_read(const char *path, char *buf, size_t size, off_t offset, struct fuse_
 // documentation for the write() system call.
 int bb_write(const char *path, const char *buf, size_t size, off_t offset, struct fuse_file_info *fi)
 {
-    int retstat = 0; 
+	int retstat = 0; 
 
-    log_msg("\nbb_write(path=\"%s\", buf=0x%08x, size=%d, offset=%lld, fi=0x%08x)\n",
-	    path, buf, size, offset, fi
-	    );
+	log_msg("\nbb_write(path=\"%s\", buf=0x%08x, size=%d, offset=%lld, fi=0x%08x)\n",
+			path, buf, size, offset, fi
+		   );
 
-    // no need to get fpath on this one, since I work from fi->fh not the path
-    log_fi(fi);
-	
-    retstat = pwrite(fi->fh, buf, size, offset);
-    if (retstat < 0)
-	retstat = bb_error("bb_write pwrite");
-    
-    return retstat;
+	// no need to get fpath on this one, since I work from fi->fh not the path
+	log_fi(fi);
+
+	retstat = pwrite(fi->fh, buf, size, offset);
+	if (retstat < 0)
+		retstat = bb_error("bb_write pwrite");
+
+	return retstat;
 }
 
 /** Get file system statistics
@@ -462,21 +465,21 @@ int bb_write(const char *path, const char *buf, size_t size, off_t offset, struc
  */
 int bb_statfs(const char *path, struct statvfs *statv)
 {
-    int retstat = 0;
-    char fpath[PATH_MAX];
-    
-    log_msg("\nbb_statfs(path=\"%s\", statv=0x%08x)\n",
-	    path, statv);
-    bb_fullpath(fpath, path);
-    
-    // get stats for underlying filesystem
-    retstat = statvfs(fpath, statv);
-    if (retstat < 0)
-	retstat = bb_error("bb_statfs statvfs");
-    
-    log_statvfs(statv);
-    
-    return retstat;
+	int retstat = 0;
+	char fpath[PATH_MAX];
+
+	log_msg("\nbb_statfs(path=\"%s\", statv=0x%08x)\n",
+			path, statv);
+	bb_fullpath(fpath, path);
+
+	// get stats for underlying filesystem
+	retstat = statvfs(fpath, statv);
+	if (retstat < 0)
+		retstat = bb_error("bb_statfs statvfs");
+
+	log_statvfs(statv);
+
+	return retstat;
 }
 
 /** Possibly flush cached data
@@ -504,13 +507,13 @@ int bb_statfs(const char *path, struct statvfs *statv)
  */
 int bb_flush(const char *path, struct fuse_file_info *fi)
 {
-    int retstat = 0;
-    
-    log_msg("\nbb_flush(path=\"%s\", fi=0x%08x)\n", path, fi);
-    // no need to get fpath on this one, since I work from fi->fh not the path
-    log_fi(fi);
-	
-    return retstat;
+	int retstat = 0;
+
+	log_msg("\nbb_flush(path=\"%s\", fi=0x%08x)\n", path, fi);
+	// no need to get fpath on this one, since I work from fi->fh not the path
+	log_fi(fi);
+
+	return retstat;
 }
 
 /** Release an open file
@@ -529,20 +532,20 @@ int bb_flush(const char *path, struct fuse_file_info *fi)
  */
 int bb_release(const char *path, struct fuse_file_info *fi)
 {
-    int retstat = 0; 
-    char fpath[PATH_MAX];
+	int retstat = 0; 
+	char fpath[PATH_MAX];
 
-    log_msg("\nbb_release(path=\"%s\", fi=0x%08x)\n",
-	  path, fi);
-    log_fi(fi);
+	log_msg("\nbb_release(path=\"%s\", fi=0x%08x)\n",
+			path, fi);
+	log_fi(fi);
 
-    // We need to close the file.  Had we allocated any resources
-    // (buffers etc) we'd need to free them here as well.
-    retstat = close(fi->fh);
-   
-    exifData(path);
- 
-    return retstat;
+	// We need to close the file.  Had we allocated any resources
+	// (buffers etc) we'd need to free them here as well.
+	retstat = close(fi->fh);
+
+	exifData(path);
+
+	return retstat;
 }
 
 /** Synchronize file contents
@@ -554,97 +557,97 @@ int bb_release(const char *path, struct fuse_file_info *fi)
  */
 int bb_fsync(const char *path, int datasync, struct fuse_file_info *fi)
 {
-    int retstat = 0;
-    
-    log_msg("\nbb_fsync(path=\"%s\", datasync=%d, fi=0x%08x)\n",
-	    path, datasync, fi);
-    log_fi(fi);
-    
-    if (datasync)
-	retstat = fdatasync(fi->fh);
-    else
-	retstat = fsync(fi->fh);
-    
-    if (retstat < 0)
-	bb_error("bb_fsync fsync");
-    
-    return retstat;
+	int retstat = 0;
+
+	log_msg("\nbb_fsync(path=\"%s\", datasync=%d, fi=0x%08x)\n",
+			path, datasync, fi);
+	log_fi(fi);
+
+	if (datasync)
+		retstat = fdatasync(fi->fh);
+	else
+		retstat = fsync(fi->fh);
+
+	if (retstat < 0)
+		bb_error("bb_fsync fsync");
+
+	return retstat;
 }
 
 /** Set extended attributes */
 int bb_setxattr(const char *path, const char *name, const char *value, size_t size, int flags)
 {
-    int retstat = 0;
-    char fpath[PATH_MAX];
-    
-    log_msg("\nbb_setxattr(path=\"%s\", name=\"%s\", value=\"%s\", size=%d, flags=0x%08x)\n",
-	    path, name, value, size, flags);
-    bb_fullpath(fpath, path);
-    
-    retstat = lsetxattr(fpath, name, value, size, flags);
-    if (retstat < 0)
-	retstat = bb_error("bb_setxattr lsetxattr");
-    
-    return retstat;
+	int retstat = 0;
+	char fpath[PATH_MAX];
+
+	log_msg("\nbb_setxattr(path=\"%s\", name=\"%s\", value=\"%s\", size=%d, flags=0x%08x)\n",
+			path, name, value, size, flags);
+	bb_fullpath(fpath, path);
+
+	retstat = lsetxattr(fpath, name, value, size, flags);
+	if (retstat < 0)
+		retstat = bb_error("bb_setxattr lsetxattr");
+
+	return retstat;
 }
 
 /** Get extended attributes */
 int bb_getxattr(const char *path, const char *name, char *value, size_t size)
 {
-    int retstat = 0;
-    char fpath[PATH_MAX];
-    
-    log_msg("\nbb_getxattr(path = \"%s\", name = \"%s\", value = 0x%08x, size = %d)\n",
-	    path, name, value, size);
-    bb_fullpath(fpath, path);
-    
-    retstat = lgetxattr(fpath, name, value, size);
-    if (retstat < 0)
-	retstat = bb_error("bb_getxattr lgetxattr");
-    else
-	log_msg("    value = \"%s\"\n", value);
-    
-    return retstat;
+	int retstat = 0;
+	char fpath[PATH_MAX];
+
+	log_msg("\nbb_getxattr(path = \"%s\", name = \"%s\", value = 0x%08x, size = %d)\n",
+			path, name, value, size);
+	bb_fullpath(fpath, path);
+
+	retstat = lgetxattr(fpath, name, value, size);
+	if (retstat < 0)
+		retstat = bb_error("bb_getxattr lgetxattr");
+	else
+		log_msg("    value = \"%s\"\n", value);
+
+	return retstat;
 }
 
 /** List extended attributes */
 int bb_listxattr(const char *path, char *list, size_t size)
 {
-    int retstat = 0;
-    char fpath[PATH_MAX];
-    char *ptr;
-    
-    log_msg("bb_listxattr(path=\"%s\", list=0x%08x, size=%d)\n",
-	    path, list, size
-	    );
-    bb_fullpath(fpath, path);
-    
-    retstat = llistxattr(fpath, list, size);
-    if (retstat < 0)
-	retstat = bb_error("bb_listxattr llistxattr");
-    
-    log_msg("    returned attributes (length %d):\n", retstat);
-    for (ptr = list; ptr < list + retstat; ptr += strlen(ptr)+1)
-	log_msg("    \"%s\"\n", ptr);
-    
-    return retstat;
+	int retstat = 0;
+	char fpath[PATH_MAX];
+	char *ptr;
+
+	log_msg("bb_listxattr(path=\"%s\", list=0x%08x, size=%d)\n",
+			path, list, size
+		   );
+	bb_fullpath(fpath, path);
+
+	retstat = llistxattr(fpath, list, size);
+	if (retstat < 0)
+		retstat = bb_error("bb_listxattr llistxattr");
+
+	log_msg("    returned attributes (length %d):\n", retstat);
+	for (ptr = list; ptr < list + retstat; ptr += strlen(ptr)+1)
+		log_msg("    \"%s\"\n", ptr);
+
+	return retstat;
 }
 
 /** Remove extended attributes */
 int bb_removexattr(const char *path, const char *name)
 {
-    int retstat = 0;
-    char fpath[PATH_MAX];
-    
-    log_msg("\nbb_removexattr(path=\"%s\", name=\"%s\")\n",
-	    path, name);
-    bb_fullpath(fpath, path);
-    
-    retstat = lremovexattr(fpath, name);
-    if (retstat < 0)
-	retstat = bb_error("bb_removexattr lrmovexattr");
-    
-    return retstat;
+	int retstat = 0;
+	char fpath[PATH_MAX];
+
+	log_msg("\nbb_removexattr(path=\"%s\", name=\"%s\")\n",
+			path, name);
+	bb_fullpath(fpath, path);
+
+	retstat = lremovexattr(fpath, name);
+	if (retstat < 0)
+		retstat = bb_error("bb_removexattr lrmovexattr");
+
+	return retstat;
 }
 
 /** Open directory
@@ -656,23 +659,23 @@ int bb_removexattr(const char *path, const char *name)
  */
 int bb_opendir(const char *path, struct fuse_file_info *fi)
 {
-    DIR *dp;
-    int retstat = 0;
-    char fpath[PATH_MAX];
-    
-    log_msg("\nbb_opendir(path=\"%s\", fi=0x%08x)\n",
-	  path, fi);
-    bb_fullpath(fpath, path);
-    
-    dp = opendir(fpath);
-    if (dp == NULL)
-	retstat = bb_error("bb_opendir opendir");
-    
-    fi->fh = (intptr_t) dp;
-    
-    log_fi(fi);
-    
-    return retstat;
+	DIR *dp;
+	int retstat = 0;
+	char fpath[PATH_MAX];
+
+	log_msg("\nbb_opendir(path=\"%s\", fi=0x%08x)\n",
+			path, fi);
+	bb_fullpath(fpath, path);
+
+	dp = opendir(fpath);
+	if (dp == NULL)
+		retstat = bb_error("bb_opendir opendir");
+
+	fi->fh = (intptr_t) dp;
+
+	log_fi(fi);
+
+	return retstat;
 }
 
 /** Read directory
@@ -698,40 +701,40 @@ int bb_opendir(const char *path, struct fuse_file_info *fi)
  */
 int bb_readdir(const char *path, void *buf, fuse_fill_dir_t filler, off_t offset, struct fuse_file_info *fi)
 {
-    int retstat = 0;
-    DIR *dp;
-    struct dirent *de;
-    
-    log_msg("\nbb_readdir(path=\"%s\", buf=0x%08x, filler=0x%08x, offset=%lld, fi=0x%08x)\n",
-	    path, buf, filler, offset, fi);
-    // once again, no need for fullpath -- but note that I need to cast fi->fh
-    dp = (DIR *) (uintptr_t) fi->fh;
+	int retstat = 0;
+	DIR *dp;
+	struct dirent *de;
 
-    // Every directory contains at least two entries: . and ..  If my
-    // first call to the system readdir() returns NULL I've got an
-    // error; near as I can tell, that's the only condition under
-    // which I can get an error from readdir()
-    de = readdir(dp);
-    if (de == 0) {
-	retstat = bb_error("bb_readdir readdir");
-	return retstat;
-    }
+	log_msg("\nbb_readdir(path=\"%s\", buf=0x%08x, filler=0x%08x, offset=%lld, fi=0x%08x)\n",
+			path, buf, filler, offset, fi);
+	// once again, no need for fullpath -- but note that I need to cast fi->fh
+	dp = (DIR *) (uintptr_t) fi->fh;
 
-    // This will copy the entire directory into the buffer.  The loop exits
-    // when either the system readdir() returns NULL, or filler()
-    // returns something non-zero.  The first case just means I've
-    // read the whole directory; the second means the buffer is full.
-    do {
-	log_msg("calling filler with name %s\n", de->d_name);
-	if (filler(buf, de->d_name, NULL, 0) != 0) {
-	    log_msg("    ERROR bb_readdir filler:  buffer full");
-	    return -ENOMEM;
+	// Every directory contains at least two entries: . and ..  If my
+	// first call to the system readdir() returns NULL I've got an
+	// error; near as I can tell, that's the only condition under
+	// which I can get an error from readdir()
+	de = readdir(dp);
+	if (de == 0) {
+		retstat = bb_error("bb_readdir readdir");
+		return retstat;
 	}
-    } while ((de = readdir(dp)) != NULL);
-    
-    log_fi(fi);
-    
-    return retstat;
+
+	// This will copy the entire directory into the buffer.  The loop exits
+	// when either the system readdir() returns NULL, or filler()
+	// returns something non-zero.  The first case just means I've
+	// read the whole directory; the second means the buffer is full.
+	do {
+		log_msg("calling filler with name %s\n", de->d_name);
+		if (filler(buf, de->d_name, NULL, 0) != 0) {
+			log_msg("    ERROR bb_readdir filler:  buffer full");
+			return -ENOMEM;
+		}
+	} while ((de = readdir(dp)) != NULL);
+
+	log_fi(fi);
+
+	return retstat;
 }
 
 /** Release directory
@@ -740,15 +743,15 @@ int bb_readdir(const char *path, void *buf, fuse_fill_dir_t filler, off_t offset
  */
 int bb_releasedir(const char *path, struct fuse_file_info *fi)
 {
-    int retstat = 0;
-    
-    log_msg("\nbb_releasedir(path=\"%s\", fi=0x%08x)\n",
-	    path, fi);
-    log_fi(fi);
-    
-    closedir((DIR *) (uintptr_t) fi->fh);
-    
-    return retstat;
+	int retstat = 0;
+
+	log_msg("\nbb_releasedir(path=\"%s\", fi=0x%08x)\n",
+			path, fi);
+	log_fi(fi);
+
+	closedir((DIR *) (uintptr_t) fi->fh);
+
+	return retstat;
 }
 
 /** Synchronize directory contents
@@ -762,13 +765,13 @@ int bb_releasedir(const char *path, struct fuse_file_info *fi)
 // happens to be a directory? ???
 int bb_fsyncdir(const char *path, int datasync, struct fuse_file_info *fi)
 {
-    int retstat = 0;
-    
-    log_msg("\nbb_fsyncdir(path=\"%s\", datasync=%d, fi=0x%08x)\n",
-	    path, datasync, fi);
-    log_fi(fi);
-    
-    return retstat;
+	int retstat = 0;
+
+	log_msg("\nbb_fsyncdir(path=\"%s\", datasync=%d, fi=0x%08x)\n",
+			path, datasync, fi);
+	log_fi(fi);
+
+	return retstat;
 }
 
 /**
@@ -790,10 +793,10 @@ int bb_fsyncdir(const char *path, int datasync, struct fuse_file_info *fi)
 // FUSE).
 void *bb_init(struct fuse_conn_info *conn)
 {
-    
-    log_msg("\nbb_init()\n");
-    
-    return BB_DATA;
+
+	log_msg("\nbb_init()\n");
+
+	return BB_DATA;
 }
 
 /**
@@ -805,7 +808,7 @@ void *bb_init(struct fuse_conn_info *conn)
  */
 void bb_destroy(void *userdata)
 {
-    log_msg("\nbb_destroy(userdata=0x%08x)\n", userdata);
+	log_msg("\nbb_destroy(userdata=0x%08x)\n", userdata);
 }
 
 /**
@@ -821,19 +824,19 @@ void bb_destroy(void *userdata)
  */
 int bb_access(const char *path, int mask)
 {
-    int retstat = 0;
-    char fpath[PATH_MAX];
-   
-    log_msg("\nbb_access(path=\"%s\", mask=0%o)\n",
-	    path, mask);
-    bb_fullpath(fpath, path);
-    
-    retstat = access(fpath, mask);
-    
-    if (retstat < 0)
-	retstat = bb_error("bb_access access");
-    
-    return retstat;
+	int retstat = 0;
+	char fpath[PATH_MAX];
+
+	log_msg("\nbb_access(path=\"%s\", mask=0%o)\n",
+			path, mask);
+	bb_fullpath(fpath, path);
+
+	retstat = access(fpath, mask);
+
+	if (retstat < 0)
+		retstat = bb_error("bb_access access");
+
+	return retstat;
 }
 
 /**
@@ -850,23 +853,23 @@ int bb_access(const char *path, int mask)
  */
 int bb_create(const char *path, mode_t mode, struct fuse_file_info *fi)
 {
-    int retstat = 0;
-    char fpath[PATH_MAX];
-    int fd;
-    
-    log_msg("\nbb_create(path=\"%s\", mode=0%03o, fi=0x%08x)\n",
-	    path, mode, fi);
-    bb_fullpath(fpath, path);
-    
-    fd = creat(fpath, mode);
-    if (fd < 0)
-	retstat = bb_error("bb_create creat");
-    
-    fi->fh = fd;
-    
-    log_fi(fi);
-    
-    return retstat;
+	int retstat = 0;
+	char fpath[PATH_MAX];
+	int fd;
+
+	log_msg("\nbb_create(path=\"%s\", mode=0%03o, fi=0x%08x)\n",
+			path, mode, fi);
+	bb_fullpath(fpath, path);
+
+	fd = creat(fpath, mode);
+	if (fd < 0)
+		retstat = bb_error("bb_create creat");
+
+	fi->fh = fd;
+
+	log_fi(fi);
+
+	return retstat;
 }
 
 /**
@@ -883,17 +886,17 @@ int bb_create(const char *path, mode_t mode, struct fuse_file_info *fi)
  */
 int bb_ftruncate(const char *path, off_t offset, struct fuse_file_info *fi)
 {
-    int retstat = 0;
-    
-    log_msg("\nbb_ftruncate(path=\"%s\", offset=%lld, fi=0x%08x)\n",
-	    path, offset, fi);
-    log_fi(fi);
-    
-    retstat = ftruncate(fi->fh, offset);
-    if (retstat < 0)
-	retstat = bb_error("bb_ftruncate ftruncate");
-    
-    return retstat;
+	int retstat = 0;
+
+	log_msg("\nbb_ftruncate(path=\"%s\", offset=%lld, fi=0x%08x)\n",
+			path, offset, fi);
+	log_fi(fi);
+
+	retstat = ftruncate(fi->fh, offset);
+	if (retstat < 0)
+		retstat = bb_error("bb_ftruncate ftruncate");
+
+	return retstat;
 }
 
 /**
@@ -913,118 +916,122 @@ int bb_ftruncate(const char *path, off_t offset, struct fuse_file_info *fi)
 // the path...
 int bb_fgetattr(const char *path, struct stat *statbuf, struct fuse_file_info *fi)
 {
-    int retstat = 0;
-    
-    log_msg("\nbb_fgetattr(path=\"%s\", statbuf=0x%08x, fi=0x%08x)\n",
-	    path, statbuf, fi);
-    log_fi(fi);
-    
-    retstat = fstat(fi->fh, statbuf);
-    if (retstat < 0)
-	retstat = bb_error("bb_fgetattr fstat");
-    
-    log_stat(statbuf);
-    
-    return retstat;
+	int retstat = 0;
+
+	log_msg("\nbb_fgetattr(path=\"%s\", statbuf=0x%08x, fi=0x%08x)\n",
+			path, statbuf, fi);
+	log_fi(fi);
+
+	retstat = fstat(fi->fh, statbuf);
+	if (retstat < 0)
+		retstat = bb_error("bb_fgetattr fstat");
+
+	log_stat(statbuf);
+
+	return retstat;
 }
 
 struct fuse_operations bb_oper = {
-  .getattr = bb_getattr,
-  .readlink = bb_readlink,
-  // no .getdir -- that's deprecated
-  .getdir = NULL,
-  .mknod = bb_mknod,
-  .mkdir = bb_mkdir,
-  .unlink = bb_unlink,
-  .rmdir = bb_rmdir,
-  .symlink = bb_symlink,
-  .rename = bb_rename,
-  .link = bb_link,
-  .chmod = bb_chmod,
-  .chown = bb_chown,
-  .truncate = bb_truncate,
-  .utime = bb_utime,
-  .open = bb_open,
-  .read = bb_read,
-  .write = bb_write,
-  /** Just a placeholder, don't set */ // huh???
-  .statfs = bb_statfs,
-  .flush = bb_flush,
-  .release = bb_release,
-  .fsync = bb_fsync,
-  .setxattr = bb_setxattr,
-  .getxattr = bb_getxattr,
-  .listxattr = bb_listxattr,
-  .removexattr = bb_removexattr,
-  .opendir = bb_opendir,
-  .readdir = bb_readdir,
-  .releasedir = bb_releasedir,
-  .fsyncdir = bb_fsyncdir,
-  .init = bb_init,
-  .destroy = bb_destroy,
-  .access = bb_access,
-  .create = bb_create,
-  .ftruncate = bb_ftruncate,
-  .fgetattr = bb_fgetattr
+	.getattr = bb_getattr,
+	.readlink = bb_readlink,
+	// no .getdir -- that's deprecated
+	.getdir = NULL,
+	.mknod = bb_mknod,
+	.mkdir = bb_mkdir,
+	.unlink = bb_unlink,
+	.rmdir = bb_rmdir,
+	.symlink = bb_symlink,
+	.rename = bb_rename,
+	.link = bb_link,
+	.chmod = bb_chmod,
+	.chown = bb_chown,
+	.truncate = bb_truncate,
+	.utime = bb_utime,
+	.open = bb_open,
+	.read = bb_read,
+	.write = bb_write,
+	/** Just a placeholder, don't set */ // huh???
+	.statfs = bb_statfs,
+	.flush = bb_flush,
+	.release = bb_release,
+	.fsync = bb_fsync,
+	.setxattr = bb_setxattr,
+	.getxattr = bb_getxattr,
+	.listxattr = bb_listxattr,
+	.removexattr = bb_removexattr,
+	.opendir = bb_opendir,
+	.readdir = bb_readdir,
+	.releasedir = bb_releasedir,
+	.fsyncdir = bb_fsyncdir,
+	.init = bb_init,
+	.destroy = bb_destroy,
+	.access = bb_access,
+	.create = bb_create,
+	.ftruncate = bb_ftruncate,
+	.fgetattr = bb_fgetattr
 };
 
 void bb_usage()
 {
-    fprintf(stderr, "usage:  bbfs [FUSE and mount options] rootDir mountPoint\n");
-    abort();
+	fprintf(stderr, "usage:  bbfs [FUSE and mount options] rootDir mountPoint\n");
+	abort();
 }
 
 int main(int argc, char *argv[])
 {
-    int fuse_stat;
-    struct bb_state *bb_data;
+	int fuse_stat;
+	struct bb_state *bb_data;
 
-    // bbfs doesn't do any access checking on its own (the comment
-    // blocks in fuse.h mention some of the functions that need
-    // accesses checked -- but note there are other functions, like
-    // chown(), that also need checking!).  Since running bbfs as root
-    // will therefore open Metrodome-sized holes in the system
-    // security, we'll check if root is trying to mount the filesystem
-    // and refuse if it is.  The somewhat smaller hole of an ordinary
-    // user doing it with the allow_other flag is still there because
-    // I don't want to parse the options string.
-    if ((getuid() == 0) || (geteuid() == 0)) {
-	fprintf(stderr, "Running BBFS as root opens unnacceptable security holes\n");
-	return 1;
-    }
-    
-    // Perform some sanity checking on the command line:  make sure
-    // there are enough arguments, and that neither of the last two
-    // start with a hyphen (this will break if you actually have a
-    // rootpoint or mountpoint whose name starts with a hyphen, but so
-    // will a zillion other programs)
-    if ((argc < 3) || (argv[argc-2][0] == '-') || (argv[argc-1][0] == '-'))
-	bb_usage();
+	// bbfs doesn't do any access checking on its own (the comment
+	// blocks in fuse.h mention some of the functions that need
+	// accesses checked -- but note there are other functions, like
+	// chown(), that also need checking!).  Since running bbfs as root
+	// will therefore open Metrodome-sized holes in the system
+	// security, we'll check if root is trying to mount the filesystem
+	// and refuse if it is.  The somewhat smaller hole of an ordinary
+	// user doing it with the allow_other flag is still there because
+	// I don't want to parse the options string.
+	if ((getuid() == 0) || (geteuid() == 0)) {
+		fprintf(stderr, "Running BBFS as root opens unnacceptable security holes\n");
+		return 1;
+	}
 
-    bb_data = malloc(sizeof(struct bb_state));
-    if (bb_data == NULL) {
-	perror("main calloc");
-	abort();
-    }
+	// Perform some sanity checking on the command line:  make sure
+	// there are enough arguments, and that neither of the last two
+	// start with a hyphen (this will break if you actually have a
+	// rootpoint or mountpoint whose name starts with a hyphen, but so
+	// will a zillion other programs)
+	if ((argc < 3) || (argv[argc-2][0] == '-') || (argv[argc-1][0] == '-'))
+		bb_usage();
 
-    // Pull the rootdir out of the argument list and save it in my
-    // internal data
-    bb_data->rootdir = realpath(argv[argc-2], NULL);
-    argv[argc-2] = argv[argc-1];
-    argv[argc-1] = NULL;
-    argc--;
-    
-    bb_data->logfile = log_open();
-    
+	bb_data = malloc(sizeof(struct bb_state));
+	if (bb_data == NULL) {
+		perror("main calloc");
+		abort();
+	}
+
+	// Pull the rootdir out of the argument list and save it in my
+	// internal data
+	bb_data->rootdir = realpath(argv[argc-2], NULL);
+	argv[argc-2] = argv[argc-1];
+	argv[argc-1] = NULL;
+	argc--;
+
+	bb_data->logfile = log_open();
+
 	int sql_return = sqlite3_stuff();
+	if(sql_return<0){
+		printf("SQL LITE HAS FAILED\n");	
+		exit(1);
+	}
 
-    // turn over control to fuse
-    fprintf(stderr, "about to call fuse_main\n");
-    fuse_stat = fuse_main(argc, argv, &bb_oper, bb_data);
-    fprintf(stderr, "fuse_main returned %d\n", fuse_stat);
-    
+	// turn over control to fuse
+	fprintf(stderr, "about to call fuse_main\n");
+	fuse_stat = fuse_main(argc, argv, &bb_oper, bb_data);
+	fprintf(stderr, "fuse_main returned %d\n", fuse_stat);
 
-    return fuse_stat;
+
+	return fuse_stat;
 }
 
 int sqlite3_stuff(){
@@ -1038,8 +1045,6 @@ int sqlite3_stuff(){
 	// A prepared statement for fetching tables
 	sqlite3_stmt *stmt;
 
-	//Creates a handle for the database connection
-	sqlite3 *handle;
 
 	//try to create the database. If it doesn't exist, it would be created
 	// pass the sqlite3 pointer
@@ -1051,16 +1056,37 @@ int sqlite3_stuff(){
 	}
 	printf("HAMDB Connection Successful!\n");
 
-	char create_table[150] = "CREATE TABLE IF NOT EXISTS files (fname TEXT PRIMARY KEY, year INTEGER, month INTEGER, day INTEGER, private INTEGER)";
+	char create_table[150] = "CREATE TABLE IF NOT EXISTS files (fname TEXT PRIMARY KEY, year TEXT, month TEXT, day TEXT, private INTEGER)";
 	printf("Query: %s\n",create_table);
 
 	//Execute the query
 	retval = sqlite3_exec(handle, create_table, 0, 0, 0);
 	if(retval){
 		printf("sqlite table creation failed\n");
+		return -1;
 	}
 
+	free(queries);
 	return retval;
+}
+
+int sqlite3_add_file(char *filename, char *in_year, char *in_month, char *in_day, int in_private){
+	int retval;
+	char **addfile_query = malloc(sizeof(char) * 500);
+	sprintf(addfile_query,"INSERT INTO files VALUES('%s','%s','%s','%s',%d)",filename,in_year,in_month,in_day,in_private);
+	log_msg("%s\n",addfile_query);
+
+	retval = sqlite3_exec(handle,addfile_query,0,0,0);
+	if(retval){
+		return -1;
+		log_msg("inserting into table failed\n");
+		log_msg("%s\n",addfile_query);
+	}
+	else{
+		log_msg("%s\n",addfile_query);
+	}
+
+	free(addfile_query);
 }
 
 /*
@@ -1074,186 +1100,194 @@ int sqlite3_stuff(){
 /* Remove spaces on the right of the string */
 static void trim_spaces(char *buf)
 {
-    char *s = buf-1;
-    for (; *buf; ++buf) {
-        if (*buf != ' ')
-            s = buf;
-    }
-    *++s = 0; /* nul terminate the string on the first of the final spaces */
+	char *s = buf-1;
+	for (; *buf; ++buf) {
+		if (*buf != ' ')
+			s = buf;
+	}
+	*++s = 0; /* nul terminate the string on the first of the final spaces */
 }
 
 static int today(){
 	//if tag does not exist, print todays date
-          int monthNum;
-	   struct tm *current;
-           time_t timenow;
-           time(&timenow);
-           current = localtime(&timenow);
-           monthNum = current->tm_mon+1;
-           day[sprintf(day, "%d", current->tm_mday)]='\0';
-           year[sprintf(year, "%d", current->tm_year+1900)]='\0';
-	   return monthNum;
+	int monthNum;
+	struct tm *current;
+	time_t timenow;
+	time(&timenow);
+	current = localtime(&timenow);
+	monthNum = current->tm_mon+1;
+	day[sprintf(day, "%d", current->tm_mday)]='\0';
+	year[sprintf(year, "%d", current->tm_year+1900)]='\0';
+	return monthNum;
 }
 
 /* Show the tag name and contents if the tag exists */
 static int show_tag(ExifData *d, ExifIfd ifd, ExifTag tag)
 {
-    //hold month number
-    int monthNum = 1;
+	//hold month number
+	int monthNum = 1;
 
-    /* See if this tag exists */
-    ExifEntry *entry = exif_content_get_entry(d->ifd[ifd],tag);
-    if (entry) {
-        char buf[1024];
+	/* See if this tag exists */
+	ExifEntry *entry = exif_content_get_entry(d->ifd[ifd],tag);
+	if (entry) {
+		char buf[1024];
 
-        // Get the contents of the tag in human-readable form 
-        exif_entry_get_value(entry, buf, sizeof(buf));
+		// Get the contents of the tag in human-readable form 
+		exif_entry_get_value(entry, buf, sizeof(buf));
 
-        // Check if date is actually there
-        trim_spaces(buf);
-        if (*buf) {
-	     if (tag==EXIF_TAG_DATE_TIME_ORIGINAL){
-		//Hold date
-		char month[3];		
+		// Check if date is actually there
+		trim_spaces(buf);
+		if (*buf) {
+			if (tag==EXIF_TAG_DATE_TIME_ORIGINAL){
+				//Hold date
+				char month[3];		
 
-		//Extract date
-	   	memcpy(year,buf, 4);
-	    	year[4] = '\0';
-	    	memcpy(month, buf+5, 2);
-	    	month[2] = '\0';
-	    	monthNum = atoi(month);
-	    	memcpy(day, buf+8,2);
-	    	day[2] = '\0';
-	    }
+				//Extract date
+				memcpy(year,buf, 4);
+				year[4] = '\0';
+				memcpy(month, buf+5, 2);
+				month[2] = '\0';
+				monthNum = atoi(month);
+				memcpy(day, buf+8,2);
+				day[2] = '\0';
+			}
+		}else{
+			if (tag==EXIF_TAG_DATE_TIME_ORIGINAL){
+				//if no date is actually there, print todays date
+				monthNum =  today();
+			}
+		}
+
 	}else{
-            if (tag==EXIF_TAG_DATE_TIME_ORIGINAL){
-	     	//if no date is actually there, print todays date
-	   	monthNum =  today();
-	    }
+		if (tag==EXIF_TAG_DATE_TIME_ORIGINAL){
+			//if tag does not exist, print todays date
+			monthNum = today();
+		}
 	}
-        
-    }else{
-	if (tag==EXIF_TAG_DATE_TIME_ORIGINAL){
-	   //if tag does not exist, print todays date
-          monthNum = today();
-	}
-    }
 
-    if (tag==EXIF_TAG_DATE_TIME_ORIGINAL){ 
-	return monthNum;
-    }else{
-	return 0;
-    }
+	if (tag==EXIF_TAG_DATE_TIME_ORIGINAL){ 
+		return monthNum;
+	}else{
+		return 0;
+	}
 }
 
 void datePost(int monthNum){
 
-	 //Put month in word form
-            switch (monthNum){
-                case 1:
-                    monthName[sprintf(monthName, "January")] = '\0';
-                    break;
-                case 2:
-                    monthName[sprintf(monthName, "February")] = '\0';
-                    break;
-                case 3:
-                    monthName[sprintf(monthName, "March")] = '\0';
-                    break;
-                case 4:
-                    monthName[sprintf(monthName, "April")] = '\0';
-                    break;
-                case 5:
-                    monthName[sprintf(monthName, "May")] = '\0';
-                    break;
-                case 6:
-                    monthName[sprintf(monthName, "June")] = '\0';
-                    break;
-                case 7:
-                    monthName[sprintf(monthName, "July")] = '\0';
-                    break;
-                case 8:
-                    monthName[sprintf(monthName, "August")] = '\0';
-                    break;
-                case 9:
-                    monthName[sprintf(monthName, "September")] = '\0';
-                    break;
-                case 10:
-                    monthName[sprintf(monthName, "October")] = '\0';
-                    break;
-                case 11:
-                    monthName[sprintf(monthName, "November")] = '\0';
-                    break;
-                case 12:
-                    monthName[sprintf(monthName, "December")] = '\0';
-                    break;
-                default:
-                        break;
-            }
-            printf("%s %s %s\n", day, monthName, year);
+	//Put month in word form
+	switch (monthNum){
+		case 1:
+			monthName[sprintf(monthName, "January")] = '\0';
+			break;
+		case 2:
+			monthName[sprintf(monthName, "February")] = '\0';
+			break;
+		case 3:
+			monthName[sprintf(monthName, "March")] = '\0';
+			break;
+		case 4:
+			monthName[sprintf(monthName, "April")] = '\0';
+			break;
+		case 5:
+			monthName[sprintf(monthName, "May")] = '\0';
+			break;
+		case 6:
+			monthName[sprintf(monthName, "June")] = '\0';
+			break;
+		case 7:
+			monthName[sprintf(monthName, "July")] = '\0';
+			break;
+		case 8:
+			monthName[sprintf(monthName, "August")] = '\0';
+			break;
+		case 9:
+			monthName[sprintf(monthName, "September")] = '\0';
+			break;
+		case 10:
+			monthName[sprintf(monthName, "October")] = '\0';
+			break;
+		case 11:
+			monthName[sprintf(monthName, "November")] = '\0';
+			break;
+		case 12:
+			monthName[sprintf(monthName, "December")] = '\0';
+			break;
+		default:
+			break;
+	}
+	printf("%s %s %s\n", day, monthName, year);
 
-    log_msg("\n%s %s %s\n",day,monthName, year);
+	log_msg("\n%s %s %s\n",day,monthName, year);
 }
 
 int exifData(char argv[])
 {
-    ExifData *ed;
-    ExifEntry *entry;
-    char fpath[PATH_MAX];
-    char fpath2[PATH_MAX];
-    char fpath3[PATH_MAX];
-/*
-    //Check arguments
-    if (argc < 2) {
-        printf("Usage: %s image.jpg\n", argv[0]);
-        printf("Displays tags potentially relating to ownership "
-                "of the image.\n");
-        return 1;
-    }
-*/
-    // Load an ExifData object from an EXIF file
+	ExifData *ed;
+	ExifEntry *entry;
+	char fpath[PATH_MAX];
+	char fpath2[PATH_MAX];
+	char fpath3[PATH_MAX];
+	char fpath4[PATH_MAX];
 
-    bb_fullpath(fpath, argv);
-    bb_fullpath(fpath3,"/");
-    ed = exif_data_new_from_file(fpath);
+	/*
+	//Check arguments
+	if (argc < 2) {
+	printf("Usage: %s image.jpg\n", argv[0]);
+	printf("Displays tags potentially relating to ownership "
+	"of the image.\n");
+	return 1;
+	}
+	*/
+	// Load an ExifData object from an EXIF file
 
-   
-    if (!ed) {
-	//Get current date
-	datePost(today());
-    }else{
-	//Get date
-	datePost(show_tag(ed, EXIF_IFD_EXIF, EXIF_TAG_DATE_TIME_ORIGINAL));
-    	
-	// Free the EXIF data
-    	exif_data_unref(ed);
-    }
-    
-    sprintf(fpath2, "/%s/", year);
-    bb_mkdir(fpath2, 0755);
+	bb_fullpath(fpath, argv);
+	bb_fullpath(fpath3,"/");
+	ed = exif_data_new_from_file(fpath);
 
-    sprintf(fpath2, "%s%s/", fpath2,  monthName);
-    bb_mkdir(fpath2, 0755);
-    
-    sprintf(fpath2, "%s%s", fpath2, day);
-    bb_mkdir(fpath2,  0755);
-    
-   
-    sprintf(fpath2, "%s%s",fpath2 ,argv);
-log_msg("uno:%s\n", fpath);
-log_msg("dos:%s\n", fpath2);
-/*
- FILE *src = fopen(fpath, "rb");
-i
- FILE *dst = fopen(fpath2, "wb");
- int i;
- for(i=getc(src); i!=EOF; i=getc(src)){
-    putc(i, dst);
- }
- fclose(dst);
- fclose(src);
-*/
 
-    remove(fpath);
-    return 0;
+	if (!ed) {
+		//Get current date
+		datePost(today());
+	}else{
+		//Get date
+		datePost(show_tag(ed, EXIF_IFD_EXIF, EXIF_TAG_DATE_TIME_ORIGINAL));
+		int sql_return = sqlite3_add_file(argv+1,year,monthName,day,0);
+
+		if(sql_return<0){
+			log_msg("sqlite write failed\n");
+		}
+		else{
+			log_msg("sqlite write success\n");
+		}
+
+		// Free the EXIF data
+		exif_data_unref(ed);
+	}
+
+	sprintf(fpath2, "/%s/", year);
+	bb_mkdir(fpath2, 0755);
+
+	sprintf(fpath2, "%s%s/", fpath2,  monthName);
+	bb_mkdir(fpath2, 0755);
+
+	sprintf(fpath2, "%s%s", fpath2, day);
+	bb_mkdir(fpath2,  0755);
+
+	sprintf(fpath4,"%s%s%s",fpath3,fpath2,argv);
+
+
+	log_msg("uno:%s\n", fpath);
+	log_msg("dos:%s\n", fpath2);
+	FILE *src = fopen(fpath, "rb");
+	FILE *dst = fopen(fpath4, "wb");
+	int i;
+	for(i=getc(src); i!=EOF; i=getc(src)){
+		putc(i, dst);
+	}
+	fclose(dst);
+	fclose(src);
+
+	remove(fpath);
+	return 0;
 }
 
