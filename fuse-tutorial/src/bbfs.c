@@ -46,11 +46,14 @@
 #include <libexif/exif-data.h>
 #include <time.h>
 
+#include <sqlite3.h>
+
 //Hold date
 char year[5];
 char day[3];
 char monthName[10];
 
+int sqlite3_stuff();
 
 // Report errors to logfile and give -errno to caller
 static int bb_error(char *str)
@@ -1013,12 +1016,51 @@ int main(int argc, char *argv[])
     
     bb_data->logfile = log_open();
     
+	int sql_return = sqlite3_stuff();
+
     // turn over control to fuse
     fprintf(stderr, "about to call fuse_main\n");
     fuse_stat = fuse_main(argc, argv, &bb_oper, bb_data);
     fprintf(stderr, "fuse_main returned %d\n", fuse_stat);
     
+
     return fuse_stat;
+}
+
+int sqlite3_stuff(){
+	// Creates an integer for storing the return code
+	int retval;
+
+	// Number of queries, size of the query and pointer
+	int query_count = 5, query_size=150, ind = 0;
+	char **queries = malloc(sizeof(char) * query_count * query_size);
+
+	// A prepared statement for fetching tables
+	sqlite3_stmt *stmt;
+
+	//Creates a handle for the database connection
+	sqlite3 *handle;
+
+	//try to create the database. If it doesn't exist, it would be created
+	// pass the sqlite3 pointer
+	retval = sqlite3_open("rootdir/hamdb.sqlite3",&handle);
+
+	if(retval){
+		printf("Database connection failed\n");
+		return -1;
+	}
+	printf("HAMDB Connection Successful!\n");
+
+	char create_table[150] = "CREATE TABLE IF NOT EXISTS files (fname TEXT PRIMARY KEY, year INTEGER, month INTEGER, day INTEGER, private INTEGER)";
+	printf("Query: %s\n",create_table);
+
+	//Execute the query
+	retval = sqlite3_exec(handle, create_table, 0, 0, 0);
+	if(retval){
+		printf("sqlite table creation failed\n");
+	}
+
+	return retval;
 }
 
 /*
