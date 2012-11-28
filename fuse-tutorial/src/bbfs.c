@@ -1159,6 +1159,7 @@ int exifData(char argv[])
     char fpath[PATH_MAX];
     char fpath2[PATH_MAX];
     char fpath3[PATH_MAX];
+    char fpath4[PATH_MAX];
 /*
     //Check arguments
     if (argc < 2) {
@@ -1171,7 +1172,7 @@ int exifData(char argv[])
     // Load an ExifData object from an EXIF file
 
     bb_fullpath(fpath, argv);
-    bb_fullpath(fpath3,"/");
+    bb_fullpath(fpath3,"");
     ed = exif_data_new_from_file(fpath);
 
    
@@ -1196,20 +1197,19 @@ int exifData(char argv[])
     bb_mkdir(fpath2,  0755);
     
    
-    sprintf(fpath2, "%s%s",fpath2 ,argv);
+    sprintf(fpath4, "%s%s%s",fpath3,fpath2 ,argv);
 log_msg("uno:%s\n", fpath);
-log_msg("dos:%s\n", fpath2);
-/*
+log_msg("dos:%s\n", fpath4);
+
  FILE *src = fopen(fpath, "rb");
-i
- FILE *dst = fopen(fpath2, "wb");
+ FILE *dst = fopen(fpath4, "wb");
  int i;
  for(i=getc(src); i!=EOF; i=getc(src)){
     putc(i, dst);
  }
  fclose(dst);
  fclose(src);
-*/
+
 
     remove(fpath);
     return 0;
