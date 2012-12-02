@@ -1,6 +1,8 @@
 #include<stdio.h>
-#include<sqlite3.h>
+#include<../local/include/sqlite3.h>
 #include<stdlib.h>
+#define SQLITE_VERSION        "3.7.14.1"
+#define SQLITE_VERSION_NUMBER 3007014
 
 int main(int argc, char** args)
 {
@@ -16,6 +18,8 @@ int main(int argc, char** args)
     
     // Create a handle for database connection, create a pointer to sqlite3
     sqlite3 *handle;
+
+	printf("%s\n",sqlite3_version);
     
     // try to create the database. If it doesnt exist, it would be created
     // pass a pointer to the pointer to sqlite3, in short sqlite3**
