@@ -705,6 +705,41 @@ int bb_readdir(const char *path, void *buf, fuse_fill_dir_t filler, off_t offset
 	DIR *dp;
 	struct dirent *de;
 
+	char select_year_query[150] = "SELECT year from files"; //query to execute on the db
+	log_msg(select_year_query);
+	sqlite3_stmt *stmt;
+
+	int retval = sqlite3_prepare(handle,select_year_query,-1,&stmt,0);
+
+	if(retval){
+		log_msg("Selecting data from DB Failed\n");
+		return -1;
+	}
+
+	int cols = sqlite3_column_count(stmt);
+
+	while(1){
+		retval = sqlite3_step(stmt);
+		if(retval == SQLITE_ROW){
+			int col;
+			for (col = 0; col<cols;col++){
+				const char *val = (const char*) sqlite3_column_text(stmt,col);
+				log_msg("%s=%s\t",sqlite3_column_name(stmt,col),val);
+			}
+			log_msg("\n");
+		}
+		else if(retval == SQLITE_DONE){
+			log_msg("All rows fetched\n");
+			break;
+		}
+		else{
+			log_msg("some error occured\n");
+			return -1;
+		}
+	}
+
+	free(select_year_query);
+
 	log_msg("\nbb_readdir(path=\"%s\", buf=0x%08x, filler=0x%08x, offset=%lld, fi=0x%08x)\n",
 			path, buf, filler, offset, fi);
 	// once again, no need for fullpath -- but note that I need to cast fi->fh
