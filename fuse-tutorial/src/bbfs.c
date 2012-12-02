@@ -707,6 +707,7 @@ int bb_readdir(const char *path, void *buf, fuse_fill_dir_t filler, off_t offset
 
 	char select_year_query[150] = "SELECT year from files"; //query to execute on the db
 	log_msg(select_year_query);
+	log_msg("\n");
 	sqlite3_stmt *stmt;
 
 	int retval = sqlite3_prepare(handle,select_year_query,-1,&stmt,0);
@@ -738,7 +739,7 @@ int bb_readdir(const char *path, void *buf, fuse_fill_dir_t filler, off_t offset
 		}
 	}
 
-	free(select_year_query);
+	log_msg("sqlite stuff is done for now\n");
 
 	log_msg("\nbb_readdir(path=\"%s\", buf=0x%08x, filler=0x%08x, offset=%lld, fi=0x%08x)\n",
 			path, buf, filler, offset, fi);
