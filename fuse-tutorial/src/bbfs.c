@@ -1019,7 +1019,7 @@ int main(int argc, char *argv[])
 
 	bb_data->logfile = log_open();
 
-	int sql_return = sqlite3_stuff();
+	int sql_return = sqlite3_create();
 	if(sql_return<0){
 		printf("SQL LITE HAS FAILED\n");	
 		exit(1);
@@ -1034,7 +1034,7 @@ int main(int argc, char *argv[])
 	return fuse_stat;
 }
 
-int sqlite3_stuff(){
+int sqlite3_create(){
 	// Creates an integer for storing the return code
 	int retval;
 
