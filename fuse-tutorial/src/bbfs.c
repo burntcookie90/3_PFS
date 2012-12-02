@@ -743,7 +743,9 @@ int bb_readdir(const char *path, void *buf, fuse_fill_dir_t filler, off_t offset
 
 	log_msg("\nbb_readdir(path=\"%s\", buf=0x%08x, filler=0x%08x, offset=%lld, fi=0x%08x)\n",
 			path, buf, filler, offset, fi);
-	// once again, no need for fullpath -- but note that I need to cast fi->fh
+
+
+/*	// once again, no need for fullpath -- but note that I need to cast fi->fh
 	dp = (DIR *) (uintptr_t) fi->fh;
 
 	// Every directory contains at least two entries: . and ..  If my
@@ -768,8 +770,8 @@ int bb_readdir(const char *path, void *buf, fuse_fill_dir_t filler, off_t offset
 		}
 	} while ((de = readdir(dp)) != NULL);
 
-	log_fi(fi);
-
+//	log_fi(fi);
+*/
 	return retstat;
 }
 
