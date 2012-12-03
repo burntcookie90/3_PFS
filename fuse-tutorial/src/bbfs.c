@@ -77,6 +77,7 @@ static int bb_error(char *str)
 //  it.
 static void bb_fullpath(char fpath[PATH_MAX], const char *path)
 {
+	log_msg(" bb fullpath path:%s\n",path);
 	strcpy(fpath, BB_DATA->rootdir);
 	strncat(fpath, path, PATH_MAX); // ridiculously long paths will
 	// break here
@@ -112,6 +113,7 @@ int bb_getattr(const char *path, struct stat *statbuf)
 		statbuf->st_nlink = 2;
 	}
 	else {	
+
 		sqlite3_stmt *stmt;
 		int i=0;
 		char select_year_query[200]; //query to execute on the db
@@ -162,8 +164,16 @@ int bb_getattr(const char *path, struct stat *statbuf)
 		}
 
 		sprintf(path, "/%s",filename);
+		log_msg("Pre-Source path: %s\n",fpath);
+		/*log_msg("Pre-Dest path: %s\n",curpath);*/
+		log_msg("Mid-Source path: %s\n",fpath);
+		log_msg("Mid-Dest path: %s\n",curpath);
+		bb_symlink(fpath,curpath);
 		bb_fullpath(fpath, path);
+		log_msg("Source path: %s\n",fpath);
+		log_msg("Dest path: %s\n",curpath);
 		retstat = lstat(fpath, statbuf);
+		statbuf->st_mode = S_IFLNK| 0755;
 
 		if (retstat != 0)
 			retstat = bb_error("bb_getattr lstat");
