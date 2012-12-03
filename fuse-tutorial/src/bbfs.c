@@ -636,7 +636,7 @@ int bb_open(const char *path, struct fuse_file_info *fi)
 
 	fi->fh = fd;
 	log_fi(fi);
-	}
+	
 	return retstat;
 }
 
