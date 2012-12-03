@@ -653,20 +653,86 @@ int bb_setxattr(const char *path, const char *name, const char *value, size_t si
 /** Get extended attributes */
 int bb_getxattr(const char *path, const char *name, char *value, size_t size)
 {
+		
+	
 	int retstat = 0;
 	char fpath[PATH_MAX];
+	char fpath2[PATH_MAX];
 
-	log_msg("\nbb_getxattr(path = \"%s\", name = \"%s\", value = 0x%08x, size = %d)\n",
-			path, name, value, size);
+//	log_msg("\nbb_getattr(path=\"%s\", statbuf=0x%08x)\n",
+//			path, statbuf);
 	bb_fullpath(fpath, path);
+	log_msg("uno%s\n", path);
 
-	retstat = lgetxattr(fpath, name, value, size);
-	if (retstat < 0)
-		retstat = bb_error("bb_getxattr lgetxattr");
-	else
-		log_msg("    value = \"%s\"\n", value);
 
+	if (strstr(fpath, ".jpg")==NULL){
+//		statbuf->st_mode = S_IFDIR | 0755;
+//		statbuf->st_nlink = 2;
+	}
+	else {	
+		sqlite3_stmt *stmt;
+		int i=0;
+		char select_year_query[200]; //query to execute on the db
+		char *filename;
+		if(i==0){
+			sprintf(select_year_query, "SELECT pathName from files where fname='%s'", curpath);
+			log_msg(select_year_query);  
+		}	
+
+		int retval = sqlite3_prepare(handle,select_year_query,-1,&stmt,0);
+
+		if(retval){
+			log_msg("Selecting data from DB Failed\n");
+			return -1;
+		}
+
+		int cols = sqlite3_column_count(stmt);
+
+		while(1){
+			retval = sqlite3_step(stmt);
+			if(retval == SQLITE_ROW){
+				int col;
+				for (col = 0; col<cols;col++){
+					const char *val = (const char*) sqlite3_column_text(stmt,col);
+					log_msg("%s=%s\t",sqlite3_column_name(stmt,col),val);
+					sprintf(fpath2,"%s/%s", curpath, val);
+					log_msg("\n%s\n", fpath2);
+					log_msg("dos:%s", path);
+					if (strcmp(fpath2, path)==0){
+						filename = val;
+						log_msg("aqui\n");
+						break;
+					}
+				}
+				log_msg("\n");
+				if (filename!=NULL){
+					break;
+				}
+			}
+			else if(retval == SQLITE_DONE){
+				log_msg("All rows fetched\n");
+				break;
+			}
+			else{
+				log_msg("some error occured\n");
+				return -1;
+			}
+		}
+
+		sprintf(path, "/%s",filename);
+		bb_fullpath(fpath, path);
+
+    retstat = lgetxattr(fpath, name, value, size);
+
+
+		if (retstat< 0)
+			retstat = bb_error("bb_getxattr lstat");
+	//	log_stat(statbuf);
+	}
 	return retstat;
+
+
+
 }
 
 /** List extended attributes */
@@ -1184,7 +1250,7 @@ int sqlite3_create(){
 	}
 	printf("HAMDB Connection Successful!\n");
 
-	char create_table[200] = "CREATE TABLE IF NOT EXISTS files (fname TEXT PRIMARY KEY, year TEXT, month TEXT, day TEXT, private INTEGER, pathName TEXT)";
+	char create_table[200] = "CREATE TABLE IF NOT EXISTS files (fname TEXT, year TEXT, month TEXT, day TEXT, private INTEGER, pathName TEXT, PRIMARY KEY(fname, pathName))";
 	printf("Query: %s\n",create_table);
 
 	//Execute the query
@@ -1384,6 +1450,12 @@ int exifData(char argv[])
 
 		int sql_return = sqlite3_add_file("/",year,0,0,0, year);
 
+		if(sql_return<0){
+			log_msg("sqlite write failed\n");
+		}
+		else{
+			log_msg("sqlite write success\n");
+		}
 		strcpy(fpath3, fpath2);	
 		sprintf(fpath2, "%s/%s", fpath2,  monthName);
 		sql_return = sqlite3_add_file(fpath3,year,monthName,0,0, monthName);
