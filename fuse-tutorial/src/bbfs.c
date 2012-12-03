@@ -102,8 +102,7 @@ int bb_getattr(const char *path, struct stat *statbuf)
 	char fpath[PATH_MAX];
 	char fpath2[PATH_MAX];
 
-	log_msg("\nbb_getattr(path=\"%s\", statbuf=0x%08x)\n",
-			path, statbuf);
+	log_msg("\nbb_getattr(path=\"%s\", statbuf=0x%08x)\n", path, statbuf);
 	bb_fullpath(fpath, path);
 	log_msg("uno%s\n", path);
 
@@ -934,7 +933,10 @@ int bb_access(const char *path, int mask)
 
 	sqlite3_stmt *stmt;
 	char select_year_query[200]; //query to execute on the db
+	log_msg("bb_access path: %s\n",path);
 	sprintf(select_year_query, "SELECT pathName from files where fname='%s'", path);
+	log_msg("%s",select_year_query);
+	log_msg("\n");
 
 	int retval = sqlite3_prepare(handle,select_year_query,-1,&stmt,0);
 	if(retval){
