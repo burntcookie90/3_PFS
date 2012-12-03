@@ -115,7 +115,7 @@ int bb_getattr(const char *path, struct stat *statbuf)
 		sqlite3_stmt *stmt;
 		int i=0;
 		char select_year_query[200]; //query to execute on the db
-		char *filename;
+		char *filename=NULL;
 		if(i==0){
 			sprintf(select_year_query, "SELECT pathName from files where fname='%s'", curpath);
 			log_msg(select_year_query);  
@@ -153,6 +153,8 @@ int bb_getattr(const char *path, struct stat *statbuf)
 			}
 			else if(retval == SQLITE_DONE){
 				log_msg("All rows fetched\n");
+				
+		log_msg("tres:%s\n", path);
 				break;
 			}
 			else{
@@ -161,7 +163,12 @@ int bb_getattr(const char *path, struct stat *statbuf)
 			}
 		}
 
-		sprintf(path, "/%s",filename);
+		
+		log_msg("tres:%s\n", path);
+		if(filename!=NULL){
+			log_msg("tres:%s\n", path);
+			sprintf(path, "/%s",filename);}
+		log_msg("tres:%s\n", path);
 		bb_fullpath(fpath, path);
 		retstat = lstat(fpath, statbuf);
 
@@ -786,10 +793,10 @@ int bb_opendir(const char *path, struct fuse_file_info *fi)
 	DIR *dp;
 	int retstat = 0;
 	char fpath[PATH_MAX];
-	/*
+	
 	   log_msg("\nbb_opendir(path=\"%s\", fi=0x%08x)\n",
 	   path, fi);
-	   bb_fullpath(fpath, path);
+	/*   bb_fullpath(fpath, path);
 
 	   dp = opendir(fpath);
 	   if (dp == NULL)
@@ -828,7 +835,7 @@ int bb_readdir(const char *path, void *buf, fuse_fill_dir_t filler, off_t offset
 	int retstat = 0;
 	DIR *dp;
 	struct dirent *de;
-	strcpy(curpath, path);
+	//strcpy(curpath, path);
 	char select_year_query[200]; //query to execute on the db
 	log_msg(select_year_query);
 	log_msg("\n");
@@ -997,6 +1004,7 @@ int bb_access(const char *path, int mask)
 	char fpath[PATH_MAX];
 	int exists = 0;
 
+	strcpy(curpath, path);
 	sqlite3_stmt *stmt;
 	char select_year_query[200]; //query to execute on the db
 	log_msg("bb_access path: %s\n",path);
