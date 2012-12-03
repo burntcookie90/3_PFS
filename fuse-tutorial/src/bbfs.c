@@ -52,7 +52,7 @@
 char year[5];
 char day[3];
 char monthName[10];
-char curpath[200] = "/";
+char curpath[200] = "";
 int sqlite3_stuff();
 
 //Creates a handle for the database connection
@@ -141,7 +141,7 @@ int bb_getattr(const char *path, struct stat *statbuf)
 					log_msg("%s=%s\t",sqlite3_column_name(stmt,col),val);
 					sprintf(fpath2,"%s/%s", curpath, val);
 					log_msg("\n%s\n", fpath2);
-					log_msg("dos:%s", path);
+					log_msg("Attrdos:%s", path);
 					if (strcmp(fpath2, path)==0){
 						filename = val;
 						log_msg("aqui\n");
@@ -166,6 +166,9 @@ int bb_getattr(const char *path, struct stat *statbuf)
 		strcpy(path2, path);
 		log_msg("tres:%s\n", path);
 
+
+		
+//		filename = path + strlen(curpath)+1;		
 		if(filename!=NULL){
 			log_msg("tres:%s\n", path);
 			sprintf(path, "/%s",filename);}
@@ -302,8 +305,7 @@ int bb_unlink(const char *path)
 	char fpath[PATH_MAX];
 	char fpath2[PATH_MAX];
 
-//	log_msg("\nbb_getattr(path=\"%s\", statbuf=0x%08x)\n",
-//			path, statbuf);
+	log_msg("\nunlink\n");
 	bb_fullpath(fpath, path);
 	log_msg("uno%s\n", path);
 
@@ -341,7 +343,7 @@ int bb_unlink(const char *path)
 					log_msg("%s=%s\t",sqlite3_column_name(stmt,col),val);
 					sprintf(fpath2,"%s/%s", curpath, val);
 					log_msg("\n%s\n", fpath2);
-					log_msg("dos:%s", path);
+					log_msg("UNLINKdos:%s", path);
 					if (strcmp(fpath2, path)==0){
 						filename = val;
 						log_msg("aqui\n");
@@ -389,7 +391,7 @@ int bb_unlink(const char *path)
 					log_msg("%s=%s\t",sqlite3_column_name(stmt,col),val);
 					sprintf(fpath2,"%s/%s", curpath, val);
 					log_msg("\n%s\n", fpath2);
-					log_msg("dos:%s", path);
+					log_msg("UNLINKdos:%s", path);
 					if (strcmp(fpath2, path)==0){
 						filename = val;
 						log_msg("aqui\n");
@@ -569,7 +571,7 @@ int bb_utime(const char *path, struct utimbuf *ubuf)
  */
 int bb_open(const char *path, struct fuse_file_info *fi)
 {
-	/*int retstat = 0;
+/*	int retstat = 0;
 	int fd;
 	char fpath[PATH_MAX];
 
@@ -593,7 +595,7 @@ int bb_open(const char *path, struct fuse_file_info *fi)
 		int i=0;
 		char select_year_query[200]; //query to execute on the db
 		char *filename=NULL;
-		if(i==0){
+	/*	if(i==0){
 			sprintf(select_year_query, "SELECT pathName from files where fname='%s'", curpath);
 			log_msg(select_year_query);  
 		}	
@@ -635,12 +637,16 @@ int bb_open(const char *path, struct fuse_file_info *fi)
 				return -1;
 			}
 		}
-
+*/
 		
+filename = path+strlen(curpath)+1;		
 		if(filename!=NULL){
-			log_msg("tres:%s\n", path);
+			log_msg("cuatro:%s\n",curpath);
+			log_msg("cuatro:%d\n",strlen(curpath));
+			log_msg("cuatro:%s\n", path);
+			log_msg("cuatro:%s\n", path);
 			sprintf(path, "/%s",filename);}
-		log_msg("tres:%s\n", path);
+		log_msg("cuatro:%s\n", path);
 		bb_fullpath(fpath, path);
 
 	fd = open(fpath, fi->flags);
@@ -894,7 +900,7 @@ int bb_getxattr(const char *path, const char *name, char *value, size_t size)
 					log_msg("%s=%s\t",sqlite3_column_name(stmt,col),val);
 					sprintf(fpath2,"%s/%s", curpath, val);
 					log_msg("\n%s\n", fpath2);
-					log_msg("dos:%s", path);
+					log_msg("XATTRdos:%s", path);
 					if (strcmp(fpath2, path)==0){
 						filename = val;
 						log_msg("aqui\n");
@@ -914,8 +920,8 @@ int bb_getxattr(const char *path, const char *name, char *value, size_t size)
 
 		sprintf(path, "/%s",filename);
 		bb_fullpath(fpath, path);
-
-    retstat = lgetxattr(fpath, name, value, size);
+		log_msg("seis:%s\n ",fpath);
+    		retstat = lgetxattr(fpath, name, value, size);
 
 
 		if (retstat< 0)
@@ -1191,7 +1197,7 @@ int bb_access(const char *path, int mask)
 	char fpath[PATH_MAX];
 	int exists = 0;
 
-	if (strstr(path, ".jpg")==NULL){
+	if (strstr(path, ".")==NULL){
 		strcpy(curpath, path);}
 	
 
@@ -1248,6 +1254,7 @@ int bb_access(const char *path, int mask)
  */
 int bb_create(const char *path, mode_t mode, struct fuse_file_info *fi)
 {
+/*
 	int retstat = 0;
 	char fpath[PATH_MAX];
 	int fd;
@@ -1264,8 +1271,90 @@ int bb_create(const char *path, mode_t mode, struct fuse_file_info *fi)
 
 	log_fi(fi);
 
+	return retstat;*/
+
+
+	int fd;
+	int retstat = 0;
+	char fpath[PATH_MAX];
+	char fpath2[PATH_MAX];
+		sqlite3_stmt *stmt;
+		int i=0;
+		char select_year_query[200]; //query to execute on the db
+		char *filename=NULL;
+/*		if(i==0){
+			sprintf(select_year_query, "SELECT pathName from files where fname='%s'", curpath);
+			log_msg(select_year_query);  
+		}	
+
+		int retval = sqlite3_prepare(handle,select_year_query,-1,&stmt,0);
+
+		if(retval){
+			log_msg("Selecting data from DB Failed\n");
+			return -1;
+		}
+
+		int cols = sqlite3_column_count(stmt);
+
+		while(1){
+			retval = sqlite3_step(stmt);
+			if(retval == SQLITE_ROW){
+				int col;
+				for (col = 0; col<cols;col++){
+					const char *val = (const char*) sqlite3_column_text(stmt,col);
+					log_msg("%s=%s\t",sqlite3_column_name(stmt,col),val);
+					sprintf(fpath2,"%s/%s", curpath, val);
+					log_msg("\n%s\n", fpath2);
+					log_msg("dos:%s", path);
+					if (strcmp(fpath2, path)==0){
+						filename = val;
+						log_msg("aqui\n");
+					}
+				}
+				log_msg("\n");
+			}
+			else if(retval == SQLITE_DONE){
+				log_msg("All rows fetched\n");
+				
+		log_msg("tres:%s\n", path);
+				break;
+			}
+			else{
+				log_msg("some error occured\n");
+				return -1;
+			}
+		}
+*/
+		
+filename = path + strlen(curpath)+1;		
+		if(filename!=NULL){
+			log_msg("cinco:%s\n", path);
+			sprintf(path, "/%s",filename);}
+		log_msg("cinco:%s\n", path);
+		bb_fullpath(fpath, path);
+
+	fd = open(fpath, fi->flags);
+	if (fd < 0)
+		retstat = bb_error("bb_open open");
+
+	fi->fh = fd;
+	log_fi(fi);
+	
 	return retstat;
+
+
+	fd = creat(fpath, mode);
+	if (fd < 0)
+		retstat = bb_error("bb_create creat");
+
+	fi->fh = fd;
+
+	log_fi(fi);
+
+	return retstat;
+
 }
+
 
 /**
  * Change the size of an open file
