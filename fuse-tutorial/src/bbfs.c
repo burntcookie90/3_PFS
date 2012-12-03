@@ -22,7 +22,7 @@
    bbfs.log, in the directory from which you run bbfs.
 
    gcc -Wall `pkg-config fuse --cflags --libs` -o bbfs bbfs.c
-   */
+ */
 
 #include "params.h"
 
@@ -105,12 +105,27 @@ int bb_getattr(const char *path, struct stat *statbuf)
 			path, statbuf);
 	bb_fullpath(fpath, path);
 
-	retstat = lstat(fpath, statbuf);
-	if (retstat != 0)
-		retstat = bb_error("bb_getattr lstat");
 
-	log_stat(statbuf);
+	char * p[3], temp;
+	temp = strtok(path,"/");
+	temp = strtok(path,"/");
+	int i=0;
 
+	while (temp != NULL)
+	{
+		p[i++] = temp;
+		temp = strtok (NULL, "/");
+	}
+
+	if (strstr(fpath, ".jpg")==NULL&&i<=3){
+		statbuf->st_mode = S_IFDIR | 0755;
+		statbuf->st_nlink = 2;
+	}else{
+		retstat = lstat(fpath, statbuf);
+		if (retstat != 0)
+			retstat = bb_error("bb_getattr lstat");
+		log_stat(statbuf);
+	}
 	return retstat;
 }
 
@@ -444,7 +459,7 @@ int bb_write(const char *path, const char *buf, size_t size, off_t offset, struc
 
 	log_msg("\nbb_write(path=\"%s\", buf=0x%08x, size=%d, offset=%lld, fi=0x%08x)\n",
 			path, buf, size, offset, fi
-		   );
+	       );
 
 	// no need to get fpath on this one, since I work from fi->fh not the path
 	log_fi(fi);
@@ -619,7 +634,7 @@ int bb_listxattr(const char *path, char *list, size_t size)
 
 	log_msg("bb_listxattr(path=\"%s\", list=0x%08x, size=%d)\n",
 			path, list, size
-		   );
+	       );
 	bb_fullpath(fpath, path);
 
 	retstat = llistxattr(fpath, list, size);
@@ -662,19 +677,19 @@ int bb_opendir(const char *path, struct fuse_file_info *fi)
 	DIR *dp;
 	int retstat = 0;
 	char fpath[PATH_MAX];
+	/*
+	   log_msg("\nbb_opendir(path=\"%s\", fi=0x%08x)\n",
+	   path, fi);
+	   bb_fullpath(fpath, path);
 
-	log_msg("\nbb_opendir(path=\"%s\", fi=0x%08x)\n",
-			path, fi);
-	bb_fullpath(fpath, path);
+	   dp = opendir(fpath);
+	   if (dp == NULL)
+	   retstat = bb_error("bb_opendir opendir");
 
-	dp = opendir(fpath);
-	if (dp == NULL)
-		retstat = bb_error("bb_opendir opendir");
+	   fi->fh = (intptr_t) dp;
 
-	fi->fh = (intptr_t) dp;
-
-	log_fi(fi);
-
+	   log_fi(fi);
+	 */
 	return retstat;
 }
 
@@ -705,10 +720,16 @@ int bb_readdir(const char *path, void *buf, fuse_fill_dir_t filler, off_t offset
 	DIR *dp;
 	struct dirent *de;
 
-	char select_year_query[150] = "SELECT year from files"; //query to execute on the db
+	char select_year_query[200]; //query to execute on the db
 	log_msg(select_year_query);
 	log_msg("\n");
 	sqlite3_stmt *stmt;
+	int i=0;
+
+	if(i==0){
+		sprintf(select_year_query, "SELECT pathName from files where fname='%s'", path);
+		log_msg(select_year_query);  
+	}	
 
 	int retval = sqlite3_prepare(handle,select_year_query,-1,&stmt,0);
 
@@ -726,6 +747,7 @@ int bb_readdir(const char *path, void *buf, fuse_fill_dir_t filler, off_t offset
 			for (col = 0; col<cols;col++){
 				const char *val = (const char*) sqlite3_column_text(stmt,col);
 				log_msg("%s=%s\t",sqlite3_column_name(stmt,col),val);
+				filler(buf, val, NULL, 0);
 			}
 			log_msg("\n");
 		}
@@ -743,10 +765,11 @@ int bb_readdir(const char *path, void *buf, fuse_fill_dir_t filler, off_t offset
 
 	log_msg("\nbb_readdir(path=\"%s\", buf=0x%08x, filler=0x%08x, offset=%lld, fi=0x%08x)\n",
 			path, buf, filler, offset, fi);
+	filler(buf, ".", NULL, 0);
+	filler(buf, "..", NULL, 0);
 
-
-/*	// once again, no need for fullpath -- but note that I need to cast fi->fh
-	dp = (DIR *) (uintptr_t) fi->fh;
+	/*	// once again, no need for fullpath -- but note that I need to cast fi->fh
+		dp = (DIR *) (uintptr_t) fi->fh;
 
 	// Every directory contains at least two entries: . and ..  If my
 	// first call to the system readdir() returns NULL I've got an
@@ -754,8 +777,8 @@ int bb_readdir(const char *path, void *buf, fuse_fill_dir_t filler, off_t offset
 	// which I can get an error from readdir()
 	de = readdir(dp);
 	if (de == 0) {
-		retstat = bb_error("bb_readdir readdir");
-		return retstat;
+	retstat = bb_error("bb_readdir readdir");
+	return retstat;
 	}
 
 	// This will copy the entire directory into the buffer.  The loop exits
@@ -763,20 +786,19 @@ int bb_readdir(const char *path, void *buf, fuse_fill_dir_t filler, off_t offset
 	// returns something non-zero.  The first case just means I've
 	// read the whole directory; the second means the buffer is full.
 	do {
-		log_msg("calling filler with name %s\n", de->d_name);
-		if (filler(buf, de->d_name, NULL, 0) != 0) {
-			log_msg("    ERROR bb_readdir filler:  buffer full");
-			return -ENOMEM;
-		}
+	log_msg("calling filler with name %s\n", de->d_name);
+	if (filler(buf, de->d_name, NULL, 0) != 0) {
+	log_msg("    ERROR bb_readdir filler:  buffer full");
+	return -ENOMEM;
+	}
 	} while ((de = readdir(dp)) != NULL);
 
-//	log_fi(fi);
-*/
+	//	log_fi(fi);
+	 */
 	return retstat;
 }
 
-/** Release directory
- *
+/*
  * Introduced in version 2.3
  */
 int bb_releasedir(const char *path, struct fuse_file_info *fi)
@@ -864,16 +886,16 @@ int bb_access(const char *path, int mask)
 {
 	int retstat = 0;
 	char fpath[PATH_MAX];
+	/*
+	   log_msg("\nbb_access(path=\"%s\", mask=0%o)\n",
+	   path, mask);
+	   bb_fullpath(fpath, path);
 
-	log_msg("\nbb_access(path=\"%s\", mask=0%o)\n",
-			path, mask);
-	bb_fullpath(fpath, path);
+	   retstat = access(fpath, mask);
 
-	retstat = access(fpath, mask);
-
-	if (retstat < 0)
-		retstat = bb_error("bb_access access");
-
+	   if (retstat < 0)
+	   retstat = bb_error("bb_access access");
+	 */
 	return retstat;
 }
 
@@ -1094,7 +1116,7 @@ int sqlite3_create(){
 	}
 	printf("HAMDB Connection Successful!\n");
 
-	char create_table[150] = "CREATE TABLE IF NOT EXISTS files (fname TEXT PRIMARY KEY, year TEXT, month TEXT, day TEXT, private INTEGER)";
+	char create_table[200] = "CREATE TABLE IF NOT EXISTS files (fname TEXT PRIMARY KEY, year TEXT, month TEXT, day TEXT, private INTEGER, pathName TEXT)";
 	printf("Query: %s\n",create_table);
 
 	//Execute the query
@@ -1108,10 +1130,10 @@ int sqlite3_create(){
 	return retval;
 }
 
-int sqlite3_add_file(char *filename, char *in_year, char *in_month, char *in_day, int in_private){
+int sqlite3_add_file(char *filename, char *in_year, char *in_month, char *in_day, int in_private, char *filepath){
 	int retval;
 	char **addfile_query = malloc(sizeof(char) * 500);
-	sprintf(addfile_query,"INSERT INTO files VALUES('%s','%s','%s','%s',%d)",filename,in_year,in_month,in_day,in_private);
+	sprintf(addfile_query,"INSERT INTO files VALUES('%s','%s','%s','%s',%d,'%s')",filename,in_year,in_month,in_day,in_private, filepath);
 	log_msg("%s\n",addfile_query);
 
 	retval = sqlite3_exec(handle,addfile_query,0,0,0);
@@ -1275,7 +1297,7 @@ int exifData(char argv[])
 	"of the image.\n");
 	return 1;
 	}
-	*/
+	 */
 	// Load an ExifData object from an EXIF file
 
 	bb_fullpath(fpath, argv);
@@ -1289,7 +1311,17 @@ int exifData(char argv[])
 	}else{
 		//Get date
 		datePost(show_tag(ed, EXIF_IFD_EXIF, EXIF_TAG_DATE_TIME_ORIGINAL));
-		int sql_return = sqlite3_add_file(argv+1,year,monthName,day,0);
+
+		sprintf(fpath2, "/%s", year);
+
+		int sql_return = sqlite3_add_file("/",year,0,0,0, year);
+		strcpy(fpath3, fpath2);
+		sprintf(fpath2, "%s/%s", fpath2,  monthName);
+
+		sql_return = sqlite3_add_file(fpath3,year,monthName,0,0, monthName);
+		strcpy(fpath3, fpath2);
+		sprintf(fpath2, "%s/%s", fpath2, day);
+		sql_return = sqlite3_add_file(fpath3,year,monthName,day,0, day);
 
 		if(sql_return<0){
 			log_msg("sqlite write failed\n");
@@ -1303,29 +1335,24 @@ int exifData(char argv[])
 	}
 
 	sprintf(fpath2, "/%s/", year);
-	bb_mkdir(fpath2, 0755);
-
 	sprintf(fpath2, "%s%s/", fpath2,  monthName);
-	bb_mkdir(fpath2, 0755);
-
 	sprintf(fpath2, "%s%s", fpath2, day);
-	bb_mkdir(fpath2,  0755);
 
 	sprintf(fpath4,"%s%s%s",fpath3,fpath2,argv);
 
+	/*
+	   log_msg("uno:%s\n", fpath);
+	   log_msg("dos:%s\n", fpath2);
+	   FILE *src = fopen(fpath, "rb");
+	   FILE *dst = fopen(fpath4, "wb");
+	   int i;
+	   for(i=getc(src); i!=EOF; i=getc(src)){
+	   putc(i, dst);
+	   }
+	   fclose(dst);
+	   fclose(src);
 
-	log_msg("uno:%s\n", fpath);
-	log_msg("dos:%s\n", fpath2);
-	FILE *src = fopen(fpath, "rb");
-	FILE *dst = fopen(fpath4, "wb");
-	int i;
-	for(i=getc(src); i!=EOF; i=getc(src)){
-		putc(i, dst);
-	}
-	fclose(dst);
-	fclose(src);
-
-	remove(fpath);
-	return 0;
+	   remove(fpath);
+	 */	return 0;
 }
 
