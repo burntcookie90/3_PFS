@@ -886,16 +886,40 @@ int bb_access(const char *path, int mask)
 {
 	int retstat = 0;
 	char fpath[PATH_MAX];
-	/*
-	   log_msg("\nbb_access(path=\"%s\", mask=0%o)\n",
-	   path, mask);
-	   bb_fullpath(fpath, path);
+	int exists = 0;
 
-	   retstat = access(fpath, mask);
+	sqlite3_stmt *stmt;
+	char select_year_query[200]; //query to execute on the db
+	sprintf(select_year_query, "SELECT pathName from files where fname='%s'", path);
 
-	   if (retstat < 0)
-	   retstat = bb_error("bb_access access");
-	 */
+	int retval = sqlite3_prepare(handle,select_year_query,-1,&stmt,0);
+	if(retval){
+		log_msg("Selecting data from DB Failed\n");
+		return -1;
+	}
+
+	int cols = sqlite3_column_count(stmt);
+
+	while(1){
+		retval = sqlite3_step(stmt);
+		if(retval == SQLITE_ROW){
+			exists = 1;
+			break;
+		}
+		else if(retval == SQLITE_DONE){
+			log_msg("All rows fetched\n");
+			break;
+		}
+		else{
+			log_msg("some error occured\n");
+			return -1;
+		}
+	}
+
+
+
+	   if (exists!=1)
+		   retstat = bb_error("bb_access access");
 	return retstat;
 }
 
@@ -1315,13 +1339,16 @@ int exifData(char argv[])
 		sprintf(fpath2, "/%s", year);
 
 		int sql_return = sqlite3_add_file("/",year,0,0,0, year);
-		strcpy(fpath3, fpath2);
+		
+		strcpy(fpath3, fpath2);	
 		sprintf(fpath2, "%s/%s", fpath2,  monthName);
-
 		sql_return = sqlite3_add_file(fpath3,year,monthName,0,0, monthName);
+		
 		strcpy(fpath3, fpath2);
 		sprintf(fpath2, "%s/%s", fpath2, day);
 		sql_return = sqlite3_add_file(fpath3,year,monthName,day,0, day);
+	
+		sql_return = sqlite3_add_file(fpath2,year,monthName,day,0, argv+1);
 
 		if(sql_return<0){
 			log_msg("sqlite write failed\n");
