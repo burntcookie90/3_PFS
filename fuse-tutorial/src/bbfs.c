@@ -181,7 +181,7 @@ int bb_getattr(const char *path, struct stat *statbuf)
 		log_msg("Dest path: %s\n",curpath);
 
 		retstat = lstat(fpath, statbuf);
-		statbuf->st_mode = S_IFLNK| 0755;
+		//statbuf->st_mode = S_IFLNK| 0755;
 
 		if (retstat != 0)
 			retstat = bb_error("bb_getattr lstat");
