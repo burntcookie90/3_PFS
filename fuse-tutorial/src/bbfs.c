@@ -52,7 +52,7 @@
 char year[5];
 char day[3];
 char monthName[10];
-
+char curpath[200];
 int sqlite3_stuff();
 
 //Creates a handle for the database connection
@@ -100,28 +100,72 @@ int bb_getattr(const char *path, struct stat *statbuf)
 {
 	int retstat = 0;
 	char fpath[PATH_MAX];
+	char fpath2[PATH_MAX];
 
 	log_msg("\nbb_getattr(path=\"%s\", statbuf=0x%08x)\n",
 			path, statbuf);
 	bb_fullpath(fpath, path);
+	log_msg("uno%s\n", path);
 
 
-	char * p[3], temp;
-	temp = strtok(path,"/");
-	temp = strtok(path,"/");
-	int i=0;
-
-	while (temp != NULL)
-	{
-		p[i++] = temp;
-		temp = strtok (NULL, "/");
-	}
-
-	if (strstr(fpath, ".jpg")==NULL&&i<=3){
+	if (strstr(fpath, ".jpg")==NULL){
 		statbuf->st_mode = S_IFDIR | 0755;
 		statbuf->st_nlink = 2;
-	}else{
+	}
+	else {	
+		sqlite3_stmt *stmt;
+		int i=0;
+		char select_year_query[200]; //query to execute on the db
+		char *filename;
+		if(i==0){
+			sprintf(select_year_query, "SELECT pathName from files where fname='%s'", curpath);
+			log_msg(select_year_query);  
+		}	
+
+		int retval = sqlite3_prepare(handle,select_year_query,-1,&stmt,0);
+
+		if(retval){
+			log_msg("Selecting data from DB Failed\n");
+			return -1;
+		}
+
+		int cols = sqlite3_column_count(stmt);
+
+		while(1){
+			retval = sqlite3_step(stmt);
+			if(retval == SQLITE_ROW){
+				int col;
+				for (col = 0; col<cols;col++){
+					const char *val = (const char*) sqlite3_column_text(stmt,col);
+					log_msg("%s=%s\t",sqlite3_column_name(stmt,col),val);
+					sprintf(fpath2,"%s/%s", curpath, val);
+					log_msg("\n%s\n", fpath2);
+					log_msg("dos:%s", path);
+					if (strcmp(fpath2, path)==0){
+						filename = val;
+						log_msg("aqui\n");
+						break;
+					}
+				}
+				log_msg("\n");
+				if (filename!=NULL){
+					break;
+				}
+			}
+			else if(retval == SQLITE_DONE){
+				log_msg("All rows fetched\n");
+				break;
+			}
+			else{
+				log_msg("some error occured\n");
+				return -1;
+			}
+		}
+
+		sprintf(path, "/%s",filename);
+		bb_fullpath(fpath, path);
 		retstat = lstat(fpath, statbuf);
+
 		if (retstat != 0)
 			retstat = bb_error("bb_getattr lstat");
 		log_stat(statbuf);
@@ -719,7 +763,7 @@ int bb_readdir(const char *path, void *buf, fuse_fill_dir_t filler, off_t offset
 	int retstat = 0;
 	DIR *dp;
 	struct dirent *de;
-
+	strcpy(curpath, path);
 	char select_year_query[200]; //query to execute on the db
 	log_msg(select_year_query);
 	log_msg("\n");
@@ -918,8 +962,8 @@ int bb_access(const char *path, int mask)
 
 
 
-	   if (exists!=1)
-		   retstat = bb_error("bb_access access");
+	if (exists!=1)
+		retstat = bb_error("bb_access access");
 	return retstat;
 }
 
@@ -1339,15 +1383,15 @@ int exifData(char argv[])
 		sprintf(fpath2, "/%s", year);
 
 		int sql_return = sqlite3_add_file("/",year,0,0,0, year);
-		
+
 		strcpy(fpath3, fpath2);	
 		sprintf(fpath2, "%s/%s", fpath2,  monthName);
 		sql_return = sqlite3_add_file(fpath3,year,monthName,0,0, monthName);
-		
+
 		strcpy(fpath3, fpath2);
 		sprintf(fpath2, "%s/%s", fpath2, day);
 		sql_return = sqlite3_add_file(fpath3,year,monthName,day,0, day);
-	
+
 		sql_return = sqlite3_add_file(fpath2,year,monthName,day,0, argv+1);
 
 		if(sql_return<0){
