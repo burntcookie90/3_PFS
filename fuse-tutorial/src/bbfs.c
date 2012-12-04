@@ -798,9 +798,10 @@ int bb_release(const char *path, struct fuse_file_info *fi)
 {
 	int retstat = 0; 
 	char fpath[PATH_MAX];
-
-	log_msg("\nbb_release(path=\"%s\", fi=0x%08x)\n",
-			path, fi);
+bb_fullpath(fpath, path);
+int a = chmod(fpath, 0755);
+	log_msg("\nbb_release(path=\"%s\", fi=0x%d)\n",
+			path,a);
 	log_fi(fi);
 exifData(path);
 	// We need to close the file.  Had we allocated any resources
