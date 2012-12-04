@@ -803,7 +803,8 @@ int a = chmod(fpath, 0755);
 	log_msg("\nbb_release(path=\"%s\", fi=0x%d)\n",
 			path,a);
 	log_fi(fi);
-exifData(path);
+	if (strstr(path+1, "/")==NULL)
+		exifData(path);
 	// We need to close the file.  Had we allocated any resources
 	// (buffers etc) we'd need to free them here as well.
 	retstat = close(fi->fh);
