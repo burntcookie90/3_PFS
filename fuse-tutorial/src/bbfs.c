@@ -1200,7 +1200,11 @@ int bb_access(const char *path, int mask)
 	int exists = 0;
 
 	if (strstr(path, ".")==NULL){
-		strcpy(curpath, path);}
+		if (strcmp(path, "/")==0)
+			strcpy(curpath, path);
+		else
+			strcpy(curpath, path);
+	}
 	
 
 	log_msg("Curpath=%s\n", curpath);
@@ -1327,12 +1331,17 @@ int bb_create(const char *path, mode_t mode, struct fuse_file_info *fi)
 			}
 		}
 */
-		
+char path2[200];	
 filename = path + strlen(curpath)+1;		
-		if(filename!=NULL){
+		if(filename!=NULL)
+			{log_msg("cinco:%s", curpath);
+			log_msg("cinco:%d\n", strlen(curpath));
 			log_msg("cinco:%s\n", path);
-			sprintf(path, "/%s",filename);}
-		log_msg("cinco:%s\n", path);
+			log_msg("cinco:%d\n", path);
+			log_msg("cinco:%s\n", path+strlen(curpath));
+			log_msg("cinco:%d\n", path+strlen(curpath));
+			sprintf(path2, "/%s",filename);}
+		log_msg("cinco:%s\n", path2);
 		bb_fullpath(fpath, path);
 
 	fd = open(fpath, fi->flags);
