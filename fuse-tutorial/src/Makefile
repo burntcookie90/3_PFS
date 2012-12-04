@@ -1,14 +1,14 @@
-bbfs : bbfs.o log.o
-	gcc -g -o bbfs bbfs.o log.o `pkg-config fuse --libs` -lexif -L/usr/local/lib -lsqlite3
+hamfs : bbfs.o log.o
+	gcc -g -o hamfs bbfs.o log.o `pkg-config fuse --libs` -lexif -L/usr/local/lib -lsqlite3
 
-bbfs.o : bbfs.c log.h params.h
-	gcc -g -Wall `pkg-config fuse --cflags` -c bbfs.c
+bbfs.o : bbfs.c log.h params.h encrypt.h
+	gcc -g -Wall `pkg-config fuse --cflags` -c bbfs.c -c encimp.c -lcrypto
 
 log.o : log.c log.h params.h
 	gcc -g -Wall `pkg-config fuse --cflags` -c log.c
 
 clean:
-	rm -f bbfs *.o
+	rm -f hamfs *.o
 
 dist:
 	rm -rf fuse-tutorial/

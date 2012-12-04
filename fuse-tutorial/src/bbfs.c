@@ -25,6 +25,7 @@
  */
 
 #include "params.h"
+#include "encrypt.h"
 
 #include <ctype.h>
 #include <dirent.h>
