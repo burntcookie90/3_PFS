@@ -20,26 +20,47 @@ unsigned char iv[8];
 int generate_key ()
 {
 	int i, j, fd;
-	if ((fd = open ("/dev/random", O_RDONLY)) == -1)
+	//printf("generate Key 1\n");
+	if ((fd = open ("/dev/urandom", O_RDONLY)) == -1)
 		perror ("open error");
 
+	//printf("generate Key 2\n");
 	if ((read (fd, key, 16)) == -1)
 		perror ("read key error");
 
+	//printf("generate Key 3\n");
 	if ((read (fd, iv, 8)) == -1)
 		perror ("read iv error");
 	
-	printf("128 bit key:\n");
+	//printf("generate Key 4\n");
+	//printf("128 bit key:\n");
 	for (i = 0; i < 16; i++)
 		printf ("%d \t", key[i]);
-	printf ("\n ------ \n");
+	//printf ("\n ------ \n");
 
 	printf("Initialization vector\n");
 	for (i = 0; i < 8; i++)
 		printf ("%d \t", iv[i]);
 
-	printf ("\n ------ \n");
+	//printf ("\n ------ \n");
 	close (fd);
+	
+	FILE* fdkey = fopen("rootdir/.hamkey.key","r");
+        FILE* fdiv = fopen("rootdir/.hamiv.iv","r");
+	if (fdkey==NULL){
+		fclose(fdkey);
+		fclose(fdiv);
+		fdkey = fopen("rootdir/.hamkey.key","w");
+        	fdiv = fopen("rootdir/.hamiv.iv","w");
+		fprintf(fdkey, "%s\n", key);
+		fprintf(fdiv, "%s\n", iv);
+		fclose(fdkey);
+		fclose(fdiv);
+	}else{
+
+		fclose(fdkey);
+		fclose(fdiv);
+	}
 	return 0;
 }
 

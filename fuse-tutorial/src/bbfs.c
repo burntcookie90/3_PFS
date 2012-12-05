@@ -457,20 +457,30 @@ int bb_symlink(const char *path, const char *link)
 // both path and newpath are fs-relative
 int bb_rename(const char *path, const char *newpath)
 {
-	int retstat = 0;
-	char fpath[PATH_MAX];
-	char fnewpath[PATH_MAX];
+        int retstat = 0;
+        char fpath[PATH_MAX];
+        char fnewpath[PATH_MAX];
 
-	log_msg("\nbb_rename(fpath=\"%s\", newpath=\"%s\")\n",
-			path, newpath);
-	bb_fullpath(fpath, path);
-	bb_fullpath(fnewpath, newpath);
+        log_msg("\nbb_rename(fpath=\"%s\", newpath=\"%s\")\n",
+                        path, newpath);
+/*      bb_fullpath(fpath, path);
+        bb_fullpath(fnewpath, newpath);
 
-	retstat = rename(fpath, fnewpath);
-	if (retstat < 0)
-		retstat = bb_error("bb_rename rename");
+        retstat = rename(fpath, fnewpath);
+        if (retstat < 0)
+                retstat = bb_error("bb_rename rename");
 
-	return retstat;
+        return retstat;*/
+        if (getuid()==0){
+                if (strstr(newpath, "+private")!=NULL&&strstr(path, "+private")==NULL){
+                        bb_unlink(path);        
+                }else if  (strstr(newpath, "+private")==NULL&&strstr(path, "+private")!=NULL){
+                        bb_unlink(path);   
+                }
+        }
+        return retstat;
+
+
 }
 
 /** Create a hard link to a file */
@@ -1038,6 +1048,7 @@ int bb_readdir(const char *path, void *buf, fuse_fill_dir_t filler, off_t offset
 	sqlite3_stmt *stmt;
 	int i=0;
 
+
 	if(i==0){
 		sprintf(select_year_query, "SELECT pathName from files where fname='%s'", path);
 		log_msg(select_year_query);  
@@ -1201,10 +1212,11 @@ int bb_access(const char *path, int mask)
 	int exists = 0;
 
 	if (strstr(path, ".")==NULL){
-		if (strcmp(path, "/")==0)
+		if (strcmp(path, "/")==0){
 			strcpy(curpath, path);
-		else
-			strcpy(curpath, path);
+			sqlite3_add_file("/","asd","asd","Asd","asd", ".hello");
+		}else{
+			strcpy(curpath, path);}
 	}
 	
 
@@ -1516,6 +1528,7 @@ int main(int argc, char *argv[])
 
 	bb_data->logfile = log_open();
 
+	generate_key();
 	int sql_return = sqlite3_create();
 	if(sql_return<0){
 		printf("SQL LITE HAS FAILED\n");	
@@ -1563,6 +1576,9 @@ int sqlite3_create(){
 		return -1;
 	}
 
+	printf("HAMDB Connection Successful!\n");
+	
+	printf("HAMDB Connection Successful!\n");
 	free(queries);
 	return retval;
 }
@@ -1570,6 +1586,7 @@ int sqlite3_create(){
 int sqlite3_add_file(char *filename, char *in_year, char *in_month, char *in_day, int in_private, char *filepath){
 	int retval;
 	char **addfile_query = malloc(sizeof(char) * 500);
+	
 	sprintf(addfile_query,"INSERT INTO files VALUES('%s','%s','%s','%s',%d,'%s')",filename,in_year,in_month,in_day,in_private, filepath);
 	log_msg("%s\n",addfile_query);
 
