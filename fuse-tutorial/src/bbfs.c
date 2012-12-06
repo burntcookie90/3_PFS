@@ -463,8 +463,9 @@ int bb_rename(const char *path, const char *newpath)
 	char **addfile_query = malloc(sizeof(char) * 500);
 	int flags1 = 0, flags2 = 0;
 	mode_t mode;       
-
+	sqlite3_stmt *stmt;
 	flags1 = flags1 | O_RDONLY;
+	flags1 = flags1 | 0;
 	flags2 = flags2 | O_RDONLY;
 	flags2 = flags2 | O_WRONLY;
 	flags2 = flags2 | O_CREAT;
@@ -485,7 +486,7 @@ int bb_rename(const char *path, const char *newpath)
         return retstat;*/
       //if (getuid()==0){
                 if (strstr(newpath, "+private")!=NULL&&strstr(path, "+private")==NULL){
-			sprintf(addfile_query,"update files set pathName='%s' where pathName='%s' ",newpath+strlen(curpath)+1,path+strlen(curpath)+1);
+			sprintf(addfile_query,"update files set pathName='%s', private='%d' where pathName='%s' ",newpath+strlen(curpath)+1,getuid(),path+strlen(curpath)+1);
 			log_msg("%s\n",addfile_query);
 			sqlite3_exec(handle,addfile_query,0,0,0);
     			bb_fullpath(fpath, path+strlen(curpath));
@@ -497,19 +498,54 @@ int bb_rename(const char *path, const char *newpath)
 			close(fd2);
 			remove(fpath);
 			chmod(fnewpath, 0755);
-	         }else if  (strstr(newpath, "+private")==NULL&&strstr(path, "+private")!=NULL){
-			sprintf(addfile_query,"update files set pathName='%s' where pathName='%s' ",newpath+strlen(curpath)+1,path+strlen(curpath)+1);
-			log_msg("%s\n",addfile_query);
-			sqlite3_exec(handle,addfile_query,0,0,0);
-    			bb_fullpath(fpath, path+strlen(curpath));
-       			bb_fullpath(fnewpath, newpath+strlen(curpath));
-			int fd1 = open(fpath,flags1, mode);
-			int fd2 = open(fnewpath,flags2, mode);
-			blowfish_decrypt(fd1,fd2, BB_DATA->rootdir);
-			close(fd1);
-			close(fd2);
-			remove(fpath);
-			chmod(fnewpath, 0755);
+	       
+		}
+
+		 if  (strstr(newpath, "+private")==NULL&&strstr(path, "+private")!=NULL){
+			
+			int val=0;
+			char select_year_query[200]; //query to execute on the db
+			char *filename=NULL;
+			sprintf(select_year_query, "SELECT private from files where pathName='%s'", path+strlen(curpath)+1);
+
+			log_msg("%s\n",select_year_query);
+			int retval = sqlite3_prepare(handle,select_year_query,-1,&stmt,0);
+	
+			log_msg("%s\n",select_year_query);
+			if(retval){
+				log_msg("Selecting data from DB Failed\n");
+				return -1;
+			}
+	
+			int cols = sqlite3_column_count(stmt);
+
+			while(1){
+				retval = sqlite3_step(stmt);
+				if(retval == SQLITE_ROW){
+					int col;
+					for (col = 0; col<cols;col++){
+						val =  sqlite3_column_int(stmt,col);
+					}
+					log_msg("\n");
+				}
+				else if(retval == SQLITE_DONE){
+					log_msg("All rows fetched\n");
+					break;
+			}
+			}
+			if (getuid()==val){
+				sprintf(addfile_query,"update files set pathName='%s' where pathName='%s' ",newpath+strlen(curpath)+1,path+strlen(curpath)+1);
+				log_msg("%s\n",addfile_query);
+				sqlite3_exec(handle,addfile_query,0,0,0);
+    				bb_fullpath(fpath, path+strlen(curpath));
+       				bb_fullpath(fnewpath, newpath+strlen(curpath));
+				int fd1 = open(fpath,flags1, mode);
+				int fd2 = open(fnewpath,flags2, mode);
+				blowfish_decrypt(fd1,fd2, BB_DATA->rootdir);
+				close(fd1);
+				close(fd2);
+				remove(fpath);
+				chmod(fnewpath, 0755);}
 	  }
         //}
         return retstat;
@@ -1608,6 +1644,13 @@ int sqlite3_create(struct bb_state *bb_data){
 
 	char create_table[200] = "CREATE TABLE IF NOT EXISTS files (fname TEXT, year TEXT, month TEXT, day TEXT, private INTEGER, pathName TEXT, PRIMARY KEY(fname, pathName))";
 	printf("Query: %s\n",create_table);
+
+	//Execute the query
+	retval = sqlite3_exec(handle, create_table, 0, 0, 0);
+	if(retval){
+		printf("sqlite table creation failed\n");
+		return -1;
+	}
 
 	//Execute the query
 	retval = sqlite3_exec(handle, create_table, 0, 0, 0);

@@ -81,8 +81,8 @@ int blowfish_decrypt (int infd, int outfd, char* rootDir)
 	
 	FILE* fdkey = fopen(path,"r");
         FILE* fdiv = fopen(path2,"r");
-	fread(key, 1,16, fdkey);
-	fread(iv,1 ,8, fdiv);
+//	fread(key, 1,16, fdkey);
+//	fread(iv,1 ,8, fdiv);
 	fclose(fdkey);
 	fclose(fdiv);
 	
@@ -139,10 +139,10 @@ int blowfish_encrypt (int infd, int outfd, char* rootDir)
 	FILE* fdkey = fopen(path,"r");
         FILE* fdiv = fopen(path2,"r");
 			log_msg("%asd\n");
-	fread(key, 1,16, fdkey);
+//	fread(key, 1,16, fdkey);
 
 			log_msg("%asd\n");
-	fread(iv,1 ,8, fdiv);
+//	fread(iv,1 ,8, fdiv);
 	fclose(fdkey);
 	fclose(fdiv);
 
