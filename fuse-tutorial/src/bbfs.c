@@ -1562,8 +1562,9 @@ int main(int argc, char *argv[])
 
 	bb_data->logfile = log_open();
 
-	generate_key();
-	int sql_return = sqlite3_create();
+	/*generate_key();*/
+	printf("rootdir: %s\n",bb_data->rootdir);
+	int sql_return = sqlite3_create(bb_data);
 	if(sql_return<0){
 		printf("SQL LITE HAS FAILED\n");	
 		exit(1);
@@ -1578,7 +1579,7 @@ int main(int argc, char *argv[])
 	return fuse_stat;
 }
 
-int sqlite3_create(){
+int sqlite3_create(struct bb_state *bb_data){
 	// Creates an integer for storing the return code
 	int retval;
 
@@ -1592,7 +1593,12 @@ int sqlite3_create(){
 
 	//try to create the database. If it doesn't exist, it would be created
 	// pass the sqlite3 pointer
-	retval = sqlite3_open("rootdir/hamdb.sqlite3",&handle);
+	printf("rootdir %s\n",bb_data->rootdir);
+	char *sqlite_location = malloc(sizeof(char*)*50);
+	strcpy(sqlite_location,bb_data->rootdir);
+	strcat(sqlite_location,"/.hamdb.sqlite3");
+	printf("sqlite location: %s\n", sqlite_location);
+	retval = sqlite3_open(sqlite_location,&handle);
 
 	if(retval){
 		printf("Database connection failed\n");
@@ -1609,8 +1615,6 @@ int sqlite3_create(){
 		printf("sqlite table creation failed\n");
 		return -1;
 	}
-
-	printf("HAMDB Connection Successful!\n");
 	
 	printf("HAMDB Connection Successful!\n");
 	free(queries);
