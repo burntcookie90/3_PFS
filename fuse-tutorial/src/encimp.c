@@ -25,7 +25,7 @@ unsigned char iv2[8];
 #define IP_SIZE 1024
 #define OP_SIZE 1024 + EVP_MAX_BLOCK_LENGTH
 
-int generate_key ()
+int generate_key (char* rootDir)
 {
 	int i, j, fd;
 	//printf("generate Key 1\n");
@@ -42,22 +42,30 @@ int generate_key ()
 	
 	//printf("generate Key 4\n");
 	//printf("128 bit key:\n");
-	for (i = 0; i < 16; i++)
-		printf ("%d \t", key[i]);
+//	for (i = 0; i < 16; i++)
+//		printf ("%d \t", key[i]);
 	//printf ("\n ------ \n");
 
-	printf("Initialization vector\n");
-	for (i = 0; i < 8; i++)
-		printf ("%d \t", iv[i]);
+//	printf("Initialization vector\n");
+//	for (i = 0; i < 8; i++)
+//		printf ("%d \t", iv[i]);
 
 	//printf ("\n ------ \n");
 	close (fd);
+
+
+	char path[300];
+	char path2[300];
 	
-	FILE* fdkey = fopen("rootdir/.hamkey.key","r");
-        FILE* fdiv = fopen("rootdir/.hamiv.iv","r");
+	sprintf(path, "%s/.hamkey.key", rootDir);
+	sprintf(path2, "%s/.hamiv.iv", rootDir);
+
+	
+	FILE* fdkey = fopen(path,"r");
+        FILE* fdiv = fopen(path2,"r");
 	if (fdkey==NULL){
-		fdkey = fopen("rootdir/.hamkey.key","w");
-        	fdiv = fopen("rootdir/.hamiv.iv","w");
+		fdkey = fopen(path,"w");
+        	fdiv = fopen(path2,"w");
 		fprintf(fdkey, "%s\n", key);
 		fprintf(fdiv, "%s\n", iv);
 		fclose(fdkey);
