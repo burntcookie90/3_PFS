@@ -11,6 +11,7 @@
 #include <sys/types.h>
 #include "encrypt.h"
 #include "log.h"
+#include <unistd.h>
 /*#define IP_SIZE 1024*/
 /*#define OP_SIZE 1032*/
 
@@ -20,6 +21,9 @@ unsigned char iv[8];
 
 unsigned char key2[16];
 unsigned char iv2[8];
+
+#define IP_SIZE 1024
+#define OP_SIZE 1024 + EVP_MAX_BLOCK_LENGTH
 
 int generate_key ()
 {
@@ -68,11 +72,10 @@ int generate_key ()
 
 int blowfish_decrypt (int infd, int outfd, char* rootDir)
 {
-	unsigned char outbuf[IP_SIZE];
-	int olen, tlen, n;
-	char inbuff[OP_SIZE];
-	EVP_CIPHER_CTX ctx;
-	EVP_CIPHER_CTX_init (&ctx);
+
+	unsigned char           *inbuff, *outbuf;
+	int             olen=0, tlen=0, n=0;
+	EVP_CIPHER_CTX  ctx;
 	char path[300];
 	char path2[300];
 	
@@ -85,50 +88,51 @@ int blowfish_decrypt (int infd, int outfd, char* rootDir)
 //	fread(iv,1 ,8, fdiv);
 	fclose(fdkey);
 	fclose(fdiv);
-	
-	EVP_DecryptInit (&ctx, EVP_bf_cbc (), key, iv);
 
-	for (;;)
-	  {
-		  bzero (&inbuff, OP_SIZE);
-		  if ((n = read (infd, inbuff, OP_SIZE)) == -1)
-		    {
-			    perror ("read error");
-			    break;
-		    }
-		  else if (n == 0)
-			  break;
+	EVP_CIPHER_CTX_init(&ctx);
+	EVP_DecryptInit(&ctx, EVP_bf_cbc(), key, iv);
 
-		  bzero (&outbuf, IP_SIZE);
+	outbuf = (unsigned char *) malloc(sizeof(unsigned char) * OP_SIZE);
+	inbuff = (unsigned char *) malloc(sizeof(unsigned char) * IP_SIZE);
 
-		  if (EVP_DecryptUpdate (&ctx, outbuf, &olen, inbuff, n) != 1)
-		    {
-			    printf ("error in decrypt update\n");
-			    return 0;
-		    }
+	/* keep reading until a break */
+	for (;;) {
+		memset(inbuff, 0, IP_SIZE);
+		if ((n = read(infd, inbuff, IP_SIZE)) == -1) {
+			perror("read error");
+			break;
+		} else if (n == 0)
+			break;
 
-		  if (EVP_DecryptFinal (&ctx, outbuf + olen, &tlen) != 1)
-		    {
-			    printf ("error in decrypt final\n");
-			    return 0;
-		    }
-		  olen += tlen;
-		  if ((n = write (outfd, outbuf, olen)) == -1)
-			  perror ("write error");
-	  }
+		memset(outbuf, 0, OP_SIZE);
 
-	EVP_CIPHER_CTX_cleanup (&ctx);
+		if (EVP_DecryptUpdate(&ctx, outbuf, &olen, inbuff, n) != 1) {
+			printf("error in decrypt update\n");
+			return 0;
+		}
+		if ((n = write(outfd, outbuf, olen)) == -1)
+			perror("write error");
+	}
+
+	tlen=0;
+	if (EVP_DecryptFinal(&ctx, outbuf + olen, &tlen) != 1) {
+		perror("error in decrypt final");
+		return 0;
+	}
+
+	if ((n = write(outfd, outbuf+olen, tlen)) == -1)
+		perror("write error");
+
+	EVP_CIPHER_CTX_cleanup(&ctx);
 	return 1;
 }
 
 int blowfish_encrypt (int infd, int outfd, char* rootDir)
 {
-	unsigned char outbuf[OP_SIZE];
-	int olen, tlen, n;
-	char inbuff[IP_SIZE];
-	EVP_CIPHER_CTX ctx;
-	EVP_CIPHER_CTX_init (&ctx);
+	unsigned char           *inbuff, *outbuf;
 
+	int             olen=0, tlen=0, n=0;
+	EVP_CIPHER_CTX  ctx;
 	char path[300];
 	char path2[300];
 	
@@ -146,37 +150,39 @@ int blowfish_encrypt (int infd, int outfd, char* rootDir)
 	fclose(fdkey);
 	fclose(fdiv);
 
+	EVP_CIPHER_CTX_init(&ctx);
+	EVP_EncryptInit(&ctx, EVP_bf_cbc(), key, iv);
 
-	EVP_EncryptInit (&ctx, EVP_bf_cbc (), key, iv);
+	outbuf = (unsigned char *) malloc(sizeof(unsigned char) * OP_SIZE);
+	inbuff = (unsigned char *) malloc(sizeof(unsigned char) * IP_SIZE);
 
-	for (;;)
-	  {
-		  bzero (&inbuff, IP_SIZE);
+	for (;;) {
+		memset(inbuff, 0, IP_SIZE);
 
-		  if ((n = read (infd, inbuff, IP_SIZE)) == -1)
-		    {
-			    perror ("read error");
-			    break;
-		    }
-		  else if (n == 0)
-			  break;
+		if ((n = read(infd, inbuff, IP_SIZE)) == -1) {
+			perror("read error");
+			break;
+		} else if (n == 0)
+			break;
 
-		  if (EVP_EncryptUpdate (&ctx, outbuf, &olen, inbuff, n) != 1)
-		    {
-			    printf ("error in encrypt update\n");
-			    return 0;
-		    }
+		if (EVP_EncryptUpdate(&ctx, outbuf, &olen, inbuff, n) != 1) {
+			printf("error in encrypt update\n");
+			return 0;
+		}
 
-		  if (EVP_EncryptFinal (&ctx, outbuf + olen, &tlen) != 1)
-		    {
-			    printf ("error in encrypt final\n");
-			    return 0;
-		    }
-		  olen += tlen;
-		  if ((n = write (outfd, outbuf, olen)) == -1)
-			  perror ("write error");
-	  }
-	EVP_CIPHER_CTX_cleanup (&ctx);
+		if ((n = write(outfd, outbuf, olen)) == -1)
+			perror("write error");
+	}
+	tlen=0;
+	if (EVP_EncryptFinal(&ctx, outbuf + olen, &tlen) != 1) {
+		printf("error in encrypt final\n");
+		return 0;
+	}
+
+	if ((n = write(outfd, outbuf+olen, tlen)) == -1)
+		perror("write error");
+
+	EVP_CIPHER_CTX_cleanup(&ctx);
 	return 1;
 }
 
