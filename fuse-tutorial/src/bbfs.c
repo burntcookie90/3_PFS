@@ -1528,7 +1528,7 @@ int main(int argc, char *argv[])
 
 	bb_data->logfile = log_open();
 
-	generate_key();
+	/*generate_key();*/
 	printf("rootdir: %s\n",bb_data->rootdir);
 	int sql_return = sqlite3_create(bb_data);
 	if(sql_return<0){
@@ -1560,7 +1560,10 @@ int sqlite3_create(struct bb_state *bb_data){
 	//try to create the database. If it doesn't exist, it would be created
 	// pass the sqlite3 pointer
 	printf("rootdir %s\n",bb_data->rootdir);
-	char *sqlite_location = strcat(bb_data->rootdir,"hamd.sqlite3");
+	char *sqlite_location = malloc(sizeof(char*)*50);
+	strcpy(sqlite_location,bb_data->rootdir);
+	strcat(sqlite_location,"/.hamdb.sqlite3");
+	printf("sqlite location: %s\n", sqlite_location);
 	retval = sqlite3_open(sqlite_location,&handle);
 
 	if(retval){
