@@ -1562,7 +1562,7 @@ int main(int argc, char *argv[])
 
 	bb_data->logfile = log_open();
 
-	/*generate_key();*/
+	generate_key();
 	printf("rootdir: %s\n",bb_data->rootdir);
 	int sql_return = sqlite3_create(bb_data);
 	if(sql_return<0){

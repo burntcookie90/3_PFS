@@ -135,9 +135,13 @@ int blowfish_encrypt (int infd, int outfd, char* rootDir)
 	sprintf(path, "%s/.hamkey.key", rootDir);
 	sprintf(path2, "%s/.hamiv.iv", rootDir);
 	
+			log_msg("asd\n");
 	FILE* fdkey = fopen(path,"r");
         FILE* fdiv = fopen(path2,"r");
+			log_msg("%asd\n");
 	fread(key, 1,16, fdkey);
+
+			log_msg("%asd\n");
 	fread(iv,1 ,8, fdiv);
 	fclose(fdkey);
 	fclose(fdiv);
