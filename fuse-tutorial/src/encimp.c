@@ -10,12 +10,16 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include "encrypt.h"
-
+#include "log.h"
 /*#define IP_SIZE 1024*/
 /*#define OP_SIZE 1032*/
 
 unsigned char key[16];
 unsigned char iv[8];
+
+
+unsigned char key2[16];
+unsigned char iv2[8];
 
 int generate_key ()
 {
@@ -48,8 +52,6 @@ int generate_key ()
 	FILE* fdkey = fopen("rootdir/.hamkey.key","r");
         FILE* fdiv = fopen("rootdir/.hamiv.iv","r");
 	if (fdkey==NULL){
-		fclose(fdkey);
-		fclose(fdiv);
 		fdkey = fopen("rootdir/.hamkey.key","w");
         	fdiv = fopen("rootdir/.hamiv.iv","w");
 		fprintf(fdkey, "%s\n", key);
@@ -64,13 +66,26 @@ int generate_key ()
 	return 0;
 }
 
-int blowfish_decrypt (int infd, int outfd)
+int blowfish_decrypt (int infd, int outfd, char* rootDir)
 {
 	unsigned char outbuf[IP_SIZE];
 	int olen, tlen, n;
 	char inbuff[OP_SIZE];
 	EVP_CIPHER_CTX ctx;
 	EVP_CIPHER_CTX_init (&ctx);
+	char path[300];
+	char path2[300];
+	
+	sprintf(path, "%s/.hamkey.key", rootDir);
+	sprintf(path2, "%s/.hamiv.iv", rootDir);
+	
+	FILE* fdkey = fopen(path,"r");
+        FILE* fdiv = fopen(path2,"r");
+	fread(key, 1,16, fdkey);
+	fread(iv,1 ,8, fdiv);
+	fclose(fdkey);
+	fclose(fdiv);
+	
 	EVP_DecryptInit (&ctx, EVP_bf_cbc (), key, iv);
 
 	for (;;)
@@ -106,13 +121,28 @@ int blowfish_decrypt (int infd, int outfd)
 	return 1;
 }
 
-int blowfish_encrypt (int infd, int outfd)
+int blowfish_encrypt (int infd, int outfd, char* rootDir)
 {
 	unsigned char outbuf[OP_SIZE];
 	int olen, tlen, n;
 	char inbuff[IP_SIZE];
 	EVP_CIPHER_CTX ctx;
 	EVP_CIPHER_CTX_init (&ctx);
+
+	char path[300];
+	char path2[300];
+	
+	sprintf(path, "%s/.hamkey.key", rootDir);
+	sprintf(path2, "%s/.hamiv.iv", rootDir);
+	
+	FILE* fdkey = fopen(path,"r");
+        FILE* fdiv = fopen(path2,"r");
+	fread(key, 1,16, fdkey);
+	fread(iv,1 ,8, fdiv);
+	fclose(fdkey);
+	fclose(fdiv);
+
+
 	EVP_EncryptInit (&ctx, EVP_bf_cbc (), key, iv);
 
 	for (;;)

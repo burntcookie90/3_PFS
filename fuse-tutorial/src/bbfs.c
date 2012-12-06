@@ -460,9 +460,21 @@ int bb_rename(const char *path, const char *newpath)
         int retstat = 0;
         char fpath[PATH_MAX];
         char fnewpath[PATH_MAX];
+	char **addfile_query = malloc(sizeof(char) * 500);
+	int flags1 = 0, flags2 = 0;
+	mode_t mode;       
 
-        log_msg("\nbb_rename(fpath=\"%s\", newpath=\"%s\")\n",
-                        path, newpath);
+	flags1 = flags1 | O_RDONLY;
+	flags2 = flags2 | O_RDONLY;
+	flags2 = flags2 | O_WRONLY;
+	flags2 = flags2 | O_CREAT;
+
+	mode = mode | S_IRUSR;
+	mode = mode | S_IWUSR;
+
+ 
+	log_msg("\nbb_rename(fpath=\"%s\", newpath=\"%s\")\n",
+                        path+strlen(curpath), newpath+strlen(curpath));
 /*      bb_fullpath(fpath, path);
         bb_fullpath(fnewpath, newpath);
 
@@ -471,13 +483,35 @@ int bb_rename(const char *path, const char *newpath)
                 retstat = bb_error("bb_rename rename");
 
         return retstat;*/
-        if (getuid()==0){
+      //if (getuid()==0){
                 if (strstr(newpath, "+private")!=NULL&&strstr(path, "+private")==NULL){
-                        bb_unlink(path);        
-                }else if  (strstr(newpath, "+private")==NULL&&strstr(path, "+private")!=NULL){
-                        bb_unlink(path);   
-                }
-        }
+			sprintf(addfile_query,"update files set pathName='%s' where pathName='%s' ",newpath+strlen(curpath)+1,path+strlen(curpath)+1);
+			log_msg("%s\n",addfile_query);
+			sqlite3_exec(handle,addfile_query,0,0,0);
+    			bb_fullpath(fpath, path+strlen(curpath));
+       			bb_fullpath(fnewpath, newpath+strlen(curpath));
+			int fd1 = open(fpath,flags1, mode);
+			int fd2 = open(fnewpath,flags2, mode);
+			blowfish_encrypt(fd1,fd2, BB_DATA->rootdir);
+			close(fd1);
+			close(fd2);
+			remove(fpath);
+			chmod(fnewpath, 0755);
+	         }else if  (strstr(newpath, "+private")==NULL&&strstr(path, "+private")!=NULL){
+			sprintf(addfile_query,"update files set pathName='%s' where pathName='%s' ",newpath+strlen(curpath)+1,path+strlen(curpath)+1);
+			log_msg("%s\n",addfile_query);
+			sqlite3_exec(handle,addfile_query,0,0,0);
+    			bb_fullpath(fpath, path+strlen(curpath));
+       			bb_fullpath(fnewpath, newpath+strlen(curpath));
+			int fd1 = open(fpath,flags1, mode);
+			int fd2 = open(fnewpath,flags2, mode);
+			blowfish_decrypt(fd1,fd2, BB_DATA->rootdir);
+			close(fd1);
+			close(fd2);
+			remove(fpath);
+			chmod(fnewpath, 0755);
+	  }
+        //}
         return retstat;
 
 
